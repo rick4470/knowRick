@@ -1,38 +1,38 @@
-<div class="page-header" data-ng-controller="HeaderController">
-  <div class="logo pull-left">
-    <a class="navbar-brand" ui-sref="home" mean-token="'site-title'">MEAN</a>
-  </div>
+            <div class="navbar-header" data-ng-controller="HeaderController">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#rebound-navbar-collapse"><span class="fa fa-bars"></span> Menu</button>
+              <a href="index.html" class="navbar-brand">Rebound</a>
+              <p class="brand-text">Responsive Portfolio Theme for Bootstrap.</p>
+            </div><!-- end navbar-header -->
+            <div class="collapse navbar-collapse" id="rebound-navbar-collapse">
+              <ul class="nav navbar-nav">
+                <li class="title">Menu</li>
+                <li class="active"><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="hire.html">Hire Me</a></li>
+                <li><a href="blog-parent.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="elements.html">UI Elements</a></li>
+                <li><a href="forms.html">Form Elements</a></li>
+                <li><a href="typography.html">Tables &amp; Typography</a></li>
+              </ul>
+              <ul class="nav navbar-nav filter-portfolio">
+                <li class="title">Work</li>
+                <li class="active"><a href="#none" data-filter="*">All</a> <span>(123)</span></li>
+                <li><a href="#none" data-filter=".film">Film</a> <span>(9)</span></li>
+                <li><a href="#none" data-filter=".music">Music</a> <span>(22)</span></li>
+                <li><a href="#none" data-filter=".art">Art</a> <span>(7)</span></li>
+                <li><a href="#none" data-filter=".social">Social</a> <span>(49)</span></li>
+              </ul>
+              <ul class="nav navbar-nav nav-social hidden-sm hidden-xs">
+                <li class="title">Social</li>
+                <li><a href="#none">Twitter</a></li>
+                <li><a href="#none">Facebook</a></li>
+                <li><a href="#none">LinkedIn</a></li>
+                <li><a href="#none">Dribbble</a></li>
+              </ul>
+            </div><!-- end navbar-collapse -->
 
-  <div class="left pull-left">
-    <ul class="navbar-nav nav">
-      <li data-ng-repeat="item in menus.main" ui-route="/{{item.link}}" ng-class="{active: $uiRoute}">
-        <a mean-token="item.link" ui-sref='{{item.link}}'>{{item.title}}</a>
-      </li>
-    </ul>
-  </div>
-
-  <div class="account">
-    <div class="text-edit">
-      <div class="pull-right" data-ng-show="global.authenticated" mean-token-editable></div>
-      <div class="pull-right" data-ng-show="global.authenticated" mean-translate></div>
-    </div>
-    <ul class="navbar-nav nav" data-ng-hide="global.authenticated">
-      <li><a ui-sref='auth.register'>Join</a>
-      </li>
-      <li class="divider-vertical"></li>
-      <li><a ui-sref='auth.login'>Log In</a>
-      </li>
-    </ul>
-    <ul class="navbar-nav nav" data-ng-show="global.authenticated">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          {{global.user.name}} <b class="caret"></b>
-        </a>
-        <ul class="dropdown-menu">
-          <li><a href="/logout">Log Out</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-</div>
+            <li><a ui-sref='auth.register'>Join</a>
+            <li><a ui-sref='auth.login'>Log In</a>
+            {{global.user.name}}
+            <li><a href="/logout">Log Out</a>

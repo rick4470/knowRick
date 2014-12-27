@@ -1,20 +1,18 @@
-<!doctype html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="https://www.facebook.com/2008/fbml" itemscope="itemscope" itemtype="http://schema.org/Product">
+<!DOCTYPE html>
+<html lang="en">
 {% include '../includes/head.html' %}
-
 <body ng-cloak class="ng-cloak" ng-class="state">
-    <div class="navbar navbar-inverse navbar-fixed-top" data-ng-include="'/system/views/header.html'" data-role="navigation"></div>
-    {% if adminEnabled %}
-    <section class="admin-menu">
-        <div data-ng-include="'/mean-admin/views/index.html'"></div>
-    </section>
-    {% endif %}
-    <section class="content">
-        <section class="container">
-            {% block content %}{% endblock %}
-        </section>
-    </section>
+    <div class="wrapper">
+        <div class="row">
+        <div class="col-md-3 sidebar">
+          <div class="navbar" role="navigation" data-ng-include="'/system/views/header.html'">
+          </div><!-- end navbar -->
+        </div><!-- end col -->
+        <div class="col-md-9 content">
+             {% block content %}{% endblock %}
+        </div><!-- end content -->
+        </div><!-- end row -->
+    </div><!-- end wrapper -->
     {% include '../includes/foot.html' %}
 </body>
-
 </html>

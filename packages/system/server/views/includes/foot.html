@@ -1,11 +1,17 @@
-{% for file in aggregatedassets.footer.js %}
-  <script type="text/javascript" src="{{file}}"></script>
-{% endfor %}
+<footer class="hidden-xs">
+  <p class="pull-left">&copy; Copyright 2014. Rebound.</p>
+  <p class="pull-right"><a href="#none">Rebound</a> by Pukeko Design Studio. <a href="documentation.html">Documentation</a>.</p>
+
+  {% for file in aggregatedassets.footer.js %}
+    <script type="text/javascript" src="{{file}}"></script>
+  {% endfor %}
+</footer>
+
+
 
 {% if (process.env.NODE_ENV == 'development') %}
   <!-- Livereload script rendered -->
-  <!-- Disabling livereload due to - https://github.com/linnovate/mean/issues/929
-       Will probably return in 0.4.2 and new aggregation
   <script type="text/javascript" src="{{'//' + req.hostname + ':35729/livereload.js'}}"></script>
-  -->
 {% endif %}
+
+
