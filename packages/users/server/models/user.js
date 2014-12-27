@@ -16,6 +16,7 @@ var validatePresenceOf = function(value) {
   return (this.provider && this.provider !== 'local') || (value && value.length);
 };
 
+
 var validateUniqueEmail = function(value, callback) {
   var User = mongoose.model('User');
   User.find({
@@ -43,10 +44,14 @@ var escapeProperty = function(value) {
  */
 
 var UserSchema = new Schema({
-  name: {
+  secret: {
     type: String,
-    required: true,
-    get: escapeProperty
+    required: true
+  },
+  username: {
+    type: String,
+    unique: true,
+    required: true
   },
   email: {
     type: String,
@@ -56,15 +61,14 @@ var UserSchema = new Schema({
     match: [/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, 'Please enter a valid email'],
     validate: [validateUniqueEmail, 'E-mail address is already in-use']
   },
-  username: {
+  name: {
     type: String,
-    unique: true,
     required: true,
     get: escapeProperty
   },
   roles: {
     type: Array,
-    default: ['authenticated']
+    default: ['admin']
   },
   hashed_password: {
     type: String,
@@ -76,12 +80,7 @@ var UserSchema = new Schema({
   },
   salt: String,
   resetPasswordToken: String,
-  resetPasswordExpires: Date,
-  facebook: {},
-  twitter: {},
-  github: {},
-  google: {},
-  linkedin: {}
+  resetPasswordExpires: Date
 });
 
 /**

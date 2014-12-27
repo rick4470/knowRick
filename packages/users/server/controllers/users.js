@@ -44,6 +44,17 @@ exports.session = function(req, res) {
 };
 
 /**
+ * validate secrete 
+ */
+  exports.validateCode = function (req, res, next) {
+    var code = 'T5RyTSgz';
+    if (req.body.secret === code) {
+      next();
+    }else{
+      return res.status(403).json({msg: 'Invalid code!'});
+    }
+  };
+/**
  * Create user
  */
 exports.create = function(req, res, next) {

@@ -5,7 +5,6 @@ angular.module('mean.users').config(['$meanStateProvider',
   function($meanStateProvider) {
     // Check if the user is not connected
     var checkLoggedOut = function($q, $timeout, $http, $location) {
-      // Initialize a new promise
       var deferred = $q.defer();
 
       // Make an AJAX call to check if the user is logged in
@@ -15,7 +14,6 @@ angular.module('mean.users').config(['$meanStateProvider',
           $timeout(deferred.reject);
           $location.url('/login');
         }
-
         // Not Authenticated
         else $timeout(deferred.resolve);
       });
@@ -44,14 +42,14 @@ angular.module('mean.users').config(['$meanStateProvider',
           loggedin: checkLoggedOut
         }
       })
-      .state('forgot-password', {
+      .state('auth.forgot-password', {
         url: '/forgot-password',
         templateUrl: 'users/views/forgot-password.html',
         resolve: {
           loggedin: checkLoggedOut
         }
       })
-      .state('reset-password', {
+      .state('auth.reset-password', {
         url: '/reset/:tokenId',
         templateUrl: 'users/views/reset-password.html',
         resolve: {

@@ -1,34 +1,37 @@
-<div data-ng-controller="LoginCtrl">
+<article data-ng-controller="loginController">
+    <div class="page-header">
+        <h2 style="margin:30px 50px 10px;">Login</h2>
+        <p class="lead">Only uber individuals can login!</p>
+    </div><!-- end page-header -->
+    <form id="login_form" ng-submit="login()"><!--form-->
+      <div class="alert alert-danger animated fadeIn" ng-show="loginerror">{{loginerror}}</div>
+      <div class="form-group">
+        <div class="controls">
+          <div class="row">
+            <div class="col-md-6">
+                <input required id="username_block" type="username" name="username" placeholder="Username" ng-model="user.username" class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <div class="alert alert-danger animated fadeIn" ng-show="loginerror">{{loginerror}}</div>
-
-    <h2>Login</h2>
-
-    <form id="login_form" ng-submit="login()">
-        <div class="input-wrapper">
-            <input required id="email_block" type="email" name="email" placeholder="Email Address" ng-model="user.email">
-            <div class="error_message">Please enter a correct info #</div>
-            <span class="pic email"></span>
+      <div class="form-group">
+        <div class="controls">
+          <div class="row">
+            <div class="col-md-6">
+                <input required id="password_block" name="password" type="password" placeholder="Password" ng-model="user.password" class="form-control">
+            </div>
+          </div>
         </div>
-        <div class="input-wrapper">
-            <input required id="password_block" name="password" type="{{input.type}}" placeholder="{{input.placeholder}}" ng-model="user.password">
-            <div class="error_message">Please enter a correct info #</div>
-                <span class="pic password {{input.iconClass}}" ng-click = "togglePasswordVisible()">
-                      <div class="hide_text_password">
-                          {{input.tooltipText}}
-                      </div>
-                </span>
+      </div>
+      <div class="form-actions">
+        <div class="row">
+          <div class="col-md-6">
+            <a ui-sref='auth.forgot-password'>Forgot your password?</a>
+            <button type="submit" class="btn btn-primary pull-right">Login</button>
+            <p>Don't have an account? <a ui-sref='auth.register' >Sign up</a></p>
+          </div>
         </div>
-        <div class="forgot_password">
-            <a ui-sref='forgot-password'>Forgot your password?</a>
-        </div>
-        <div class="button_login">
-            <button type="submit" class="submit_button">Login</button>
-            <p>Don't have an account?</p>
-            <a ui-sref='auth.register' >Sign up</a>
-        </div>
-        <div class="woman_ninja_bottom">
-            <img src="/theme/assets/img/woman_ninja.png" alt="#">
-        </div>
-    </form>
-</div>
+      </div>
+    </form> <!--end form-->
+</article><!-- end article -->

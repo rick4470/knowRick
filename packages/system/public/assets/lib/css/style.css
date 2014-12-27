@@ -43,7 +43,7 @@
 ****************************************************/
 body {
   font-family: 'PT Sans', Helvetica, Arial, ans-serif;
-  background: url(../img/bg.jpg) 0 0 repeat #efefef;
+  /*background: url(../img/bg.jpg) 0 0 repeat #efefef;*/
   color: #555;
 }
 a {
