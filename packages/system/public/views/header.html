@@ -1,38 +1,33 @@
-            <div class="navbar-header" data-ng-controller="HeaderController">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#rebound-navbar-collapse"><span class="fa fa-bars"></span> Menu</button>
-              <a href="index.html" class="navbar-brand">Rebound</a>
-              <p class="brand-text">Responsive Portfolio Theme for Bootstrap.</p>
-            </div><!-- end navbar-header -->
-            <div class="collapse navbar-collapse" id="rebound-navbar-collapse">
-              <ul class="nav navbar-nav">
-                <li class="title">Menu</li>
-                <li class="active"><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="hire.html">Hire Me</a></li>
-                <li><a href="blog-parent.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="elements.html">UI Elements</a></li>
-                <li><a href="forms.html">Form Elements</a></li>
-                <li><a href="typography.html">Tables &amp; Typography</a></li>
-              </ul>
-              <ul class="nav navbar-nav filter-portfolio">
-                <li class="title">Work</li>
-                <li class="active"><a href="#none" data-filter="*">All</a> <span>(123)</span></li>
-                <li><a href="#none" data-filter=".film">Film</a> <span>(9)</span></li>
-                <li><a href="#none" data-filter=".music">Music</a> <span>(22)</span></li>
-                <li><a href="#none" data-filter=".art">Art</a> <span>(7)</span></li>
-                <li><a href="#none" data-filter=".social">Social</a> <span>(49)</span></li>
-              </ul>
-              <ul class="nav navbar-nav nav-social hidden-sm hidden-xs">
-                <li class="title">Social</li>
-                <li><a href="#none">Twitter</a></li>
-                <li><a href="#none">Facebook</a></li>
-                <li><a href="#none">LinkedIn</a></li>
-                <li><a href="#none">Dribbble</a></li>
-              </ul>
-            </div><!-- end navbar-collapse -->
+<div class="navbar-header" data-ng-controller="HeaderController">
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#"><span class="fa fa-bars"></span> Menu</button>
+  <a ui-sref='root' class="navbar-brand" >KnowRick</a>
+  <p class="brand-text" title="{{author}}">{{quote}}.</p>
+</div><!-- end navbar-header -->
 
-            <li><a ui-sref='auth.register'>Join</a>
-            <li><a ui-sref='auth.login'>Log In</a>
-            {{global.user.name}}
-            <li><a href="/logout">Log Out</a>
+<div class="collapse navbar-collapse" id="rebound-navbar-collapse" data-ng-controller="HeaderController">
+  <ul class="nav nav-pills nav-stacked" style="max-width: 300px;">
+
+    <li class="{{page.active}}" ng-repeat="page in pages">
+      <a ui-sref='{{page.location}}' ng-click="updateTab(page.id)">
+        <i class="fa {{page.icon}} fa-fw"></i> {{page.name}}
+      </a>
+    </li>
+  </ul>
+
+  <ul class="nav navbar-nav filter-portfolio" ng-init="pagesInit()">
+    <li class="title">Past Years</li>
+    <li ng-repeat="goal in goals">
+      {{goal.year}}
+    </li>
+  </ul>
+
+  <ul class="nav navbar-nav nav-social hidden-sm hidden-xs">
+    <li class="title">Social</li>
+    <li><a target="_blank" href="https://twitter.com/rick4470"><i class="fa fa-twitter"></i> Twitter</a></li>
+    <li><a target="_blank" href="https://plus.google.com/u/0/+RickHCWI/"><i class="fa fa-google-plus"></i> Google+</a></li>
+    <li><a target="_blank" href="https://www.linkedin.com/pub/ricardo-hernandez/3b/651/5a7"><i class="fa fa-linkedin"></i> LinkedIn</a></li>
+    <li><a target="_blank" href="http://codewithintent.com/"><i class="fa fa-code"></i> Software Blog</a></li>
+    <li><a target="_blank" href="http://saltyslopes.com/"><i class="fa fa-outdent"></i> Portfolio</a></li>
+
+  </ul>
+</div><!-- end navbar-collapse -->

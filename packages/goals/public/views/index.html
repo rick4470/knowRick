@@ -1,0 +1,26 @@
+<div class="max-page" ui-view>
+  <ol class="breadcrumb" ng-controller="breadController" data-ng-init="indexInit()">
+    <li ng-repeat="item in breadCrumbs">
+      <a ui-sref='{{item.location}}'>{{item.name}}</a>
+    </li>
+  </ol>
+  <article>
+    <div class="row padding-bottom-10">
+      <div class="col-md-6">
+        <p class="text-left">Undertake Goals<a ui-sref='goals.create'><button class="btn btn-lg btn-light pull-right"><i class="fa fa-only fa-plus"></i></button></a></p>
+      </div>
+    </div>
+
+    <div class="row padding-bottom-10">
+      <div class="col-md-6">
+        <p class="text-left">Complete Todays Goals <a ui-sref='goals.today'><button class="btn btn-lg btn-light pull-right"><i class="fa fa-only fa-road"></i></button></a></p>
+      </div>
+    </div>
+    <hr>
+    <div class="row padding-bottom-10">
+      <div class="col-md-6">
+        <p class="text-left">New Year Page <a ui-sref='goals.year'><button class="btn btn-lg btn-light pull-right"><i class="fa fa-only fa-calendar"></i></button></a></p>
+      </div>
+    </div>
+  </article><!-- end article -->
+</div>

@@ -1,0 +1,32 @@
+#datepicker .btn-default{
+  color: initial !important;
+}
+
+#datepicker .btn-default:hover {
+  background-color: #e0e0e0 !important;
+}
+#datepicker .btn-default:active {
+  background-color: #e0e0e0 !important;
+  color: #fff !important;
+}
+
+#datepicker .btn-info.active {
+  background-color: #f96e5b !important;
+  color: #fff !important;
+}
+
+#datepicker .btn-default.active {
+  background-color: #e0e0e0 !important;
+  color: #555 !important;
+}
+
+
+@-webkit-keyframes myfirst /* Safari and Chrome */
+{
+   from {background: #f96e5b;}
+   to {background: none;}
+}
+
+.animation-background {
+    -webkit-animation: myfirst 3s;
+}

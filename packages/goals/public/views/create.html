@@ -1,0 +1,123 @@
+<section>
+  <ol class="breadcrumb" ng-controller="breadController" data-ng-init="createInit()">
+    <li ng-repeat="item in breadCrumbs">
+      <a ui-sref='{{item.location}}'>{{item.name}}</a>
+    </li>
+  </ol>
+  <article ng-controller="CreateController">
+    <div class="row">
+      <div class="col-md-6"></div>
+      <div class="col-md-6 margin-bottom-10" ng-hide="newGoal"><a class="btn btn-inverse pull-right" ng-click="addGoal()">Create a Goal <i class="fa fa-plus"></i></a></div>
+    </div>
+
+    <div>
+      {{gotdata}}
+    </div>
+    
+    <div class="list-group">
+      <div ng-repeat="item in goals" class="list-group-item animation-background">
+        <div class="row">
+          <div class="col-md-9">
+            <h4 class="list-group-item-heading">#{{$index + 1}}| I am easily going to {{item.name}} no later then {{item.completeBy | date:'longDate' }}.</h4>
+          </div>
+          <div class="col-md-3">
+            <div class="pull-right"><a href="" ng-click="addSubGoal($index)"><i class="fa fa-plus"></i> Add a subgoal </a><a href="" ng-click="edit($index)"><i class="fa fa-pencil-square-o"></i></a> <a href="" ng-click="delete($index)"><i class="glyphicon glyphicon-trash"></i></a></div>
+          </div>
+        </div>
+        <div class="row" ng-repeat="subgoal in item.goal">
+          <div class="col-md-11 col-md-offset-1">
+            <div>
+              <div class="list-group-item animation-background">
+                <div class="row">
+                  <div class="col-md-10">
+                    <h4 class="list-group-item-heading">I am easily going to {{subgoal.name}} no later then {{subgoal.completeBy | date:'longDate' }}.</h4> 
+                  </div>
+                  <div class="col-md-2">
+                    <div class="pull-right">
+                      <a href="" ng-click="edit($parent.$index, $index)"><i class="fa fa-pencil-square-o"></i></a>
+                      <a href="" ng-click="delete($parent.$index, $index)"><i class="glyphicon glyphicon-trash"></i></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<script type="text/ng-template" id="goalTemplate.html">
+<div class="modal-header" ng-controller="CreateController"> 
+  <h3 class="modal-title">{{actionType}} a goal</h3>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <blockquote class="large center">
+                <span>I am easily going to <b>{{goal.name}}</b> no later then {{goal.completeBy | date:'longDate' }}.</span>
+                <small>Rick H</small>
+                <p>{{goal.description}}</p>
+              </blockquote>
+            </div>
+          </div>
+          <form name="goalForm" novalidate class="form-horizontal">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <div class="controls">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <input required id="name" type="text" name="name" placeholder="Goal" ng-model="goal.name" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <div class="controls">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div style="max-height:240px;" id="datepicker">
+                            <datepicker ng-required="true" ng-model="goal.completeBy" min-date="minDate" show-weeks="true" class="well well-sm"></datepicker>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" >
+                  <div class="controls">
+                    <div class="row">
+                      <div class="col-md-6 margin-top-50">
+                      <textarea required rows="10" class="form-control" name="description" placeholder="Enter a goal description" ng-model="goal.description" class="form-control"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          
+          <div ng-show="subGoal">
+            <div class="row" ng-show="subGoal">
+              <div class="col-md-4">
+                <input id="name" type="text" name="number" placeholder="Goal Total" ng-model="goal.total" class="form-control">
+              </div>
+            </div>
+          </div>
+        </form>  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-light" ng-click="cancel()">Cancel</button>
+  <button class="btn btn-inverse pull-right" ng-click="ok(goal)" ng-disabled="goalForm.$invalid">{{actionType}}</button>
+</div>
+</script>
