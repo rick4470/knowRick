@@ -81,5 +81,7 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
     $scope.author = goals[randomNumber].author;
     $scope.quote = goals[randomNumber].quote;
 
+    $scope.date = new Date();
+
   }
 ]);

@@ -30,37 +30,13 @@ angular.module('mean.goals').config(['$stateProvider',
       }
     }).state('goals.create',{
       url: '/create',
-      templateUrl: 'goals/views/create.html',
-      resolve: {
-        loggedin: checkLoggedin
-      }
-    }).state('goals.update', {
-      url: '/update',
-      templateUrl: 'goals/views/update.html',
+      templateUrl: 'goals/views/goals/create.html',
       resolve: {
         loggedin: checkLoggedin
       }
     }).state('goals.today', {
       url: '/today',
-      templateUrl: 'goals/views/today.html',
-      resolve: {
-        loggedin: checkLoggedin
-      }
-    }).state('goals.year', {
-      url: '/year',
-      templateUrl: 'goals/views/year.html',
-      resolve: {
-        loggedin: checkLoggedin
-      }
-    }).state('goals.create-page',{
-      url: '/create-page',
-      templateUrl: 'goals/views/create-page.html',
-      resolve: {
-        loggedin: checkLoggedin
-      }
-    }).state('goals.update-page',{
-      url: '/update-page/:pageId',
-      templateUrl: 'goals/views/update-page.html',
+      templateUrl: 'goals/views/goals/today.html',
       resolve: {
         loggedin: checkLoggedin
       }

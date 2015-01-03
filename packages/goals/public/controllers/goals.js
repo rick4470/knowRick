@@ -11,13 +11,13 @@ angular.module('mean.goals').controller('CreateController', ['$scope', 'Global',
     $scope.latestGoals = function() {
       Goals.query(function(data) {
         $scope.goals = data;
-        $scope.gotdata = data;
       });
     };
 
     $scope.latestGoals();
 
     $scope.addGoal = function() {
+      $scope.subGoal = false;
       createGoal();
     };
 
@@ -28,7 +28,15 @@ angular.module('mean.goals').controller('CreateController', ['$scope', 'Global',
     $scope.delete = function(index, subgoal){
       if (subgoal !== undefined) {
         if (index > -1) {
-          $scope.goals[index].subgoal.splice(subgoal, 1);
+          //
+          console.log();
+          SubGoals.get({
+            subGoalId: $scope.goals[index].subGoal[subgoal]._id
+          }, function(subGoal) {
+            subGoal.$remove(function(response) {
+              $scope.goals[index].subGoal.splice(subgoal, 1);
+            });
+          });
         }
       }else{
         if (index > -1) {
@@ -40,14 +48,13 @@ angular.module('mean.goals').controller('CreateController', ['$scope', 'Global',
     };
 
 
-    $scope.edit = function(index, subgoal){
+    $scope.edit = function(goal, subgoal){
       if (subgoal !== undefined) {
-        editGoal($scope.goals[index].subgoal[subgoal], true);
+        editGoal($scope.goals[goal], $scope.goals[goal].subGoal[subgoal]);
       }else{
-        editGoal($scope.goals[index]);
+        editGoal($scope.goals[goal]);
       }
     };
-
 
     $scope.today = function() {
       $scope.dt = new Date();
@@ -60,9 +67,18 @@ angular.module('mean.goals').controller('CreateController', ['$scope', 'Global',
 
       var ModalInstanceCtrl = function($scope, $modalInstance) {
         $scope.actionType = 'Update';
-        $scope.goal = goal;
-        if (subGoal) $scope.subGoal = true;
-
+        
+        if(subGoal !== undefined){
+          $scope.subGoal = true;
+          SubGoals.get({
+            subGoalId: subGoal._id
+          }, function(subGoal) {
+            $scope.goal = subGoal;
+          });
+        }else{
+          $scope.goal = goal;  
+        }
+        
         $scope.ok = function(goal) {
           $modalInstance.close(goal);
         };
@@ -81,9 +97,25 @@ angular.module('mean.goals').controller('CreateController', ['$scope', 'Global',
       });
 
       modalInstance.result.then(function(goal){
-        goal.$update(function(response){
-          $scope.goal = null;    
-        });
+        if (subGoal !== undefined){
+          goal.$update(function(response){
+            if (response._id !== undefined) {
+              $scope.latestGoals();
+            }
+          });
+        }else{
+          var idsArray = [];
+          for (var i = 0; i < goal.subGoal.length; i+=1) {
+            idsArray.push(goal.subGoal[i]._id);
+          }
+          goal.subGoal = idsArray;
+
+          goal.$update(function(response){
+            if (response._id !== undefined) {
+              $scope.latestGoals();
+            }
+          });
+        }
         return true;
       }, function() {
         $scope.goal = null;
@@ -128,20 +160,24 @@ angular.module('mean.goals').controller('CreateController', ['$scope', 'Global',
             goalTotal: goal.total,
             completeBy: goal.completeBy
           });
-
-          subGoalService.$save(function(response) {
-            $scope.gotdata = response;
-            $scope.goals[subgoal].subGoal.push({'name': goal.name, 'description': goal.description, 'goalTotal': goal.total,'completeBy': goal.completeBy});
-
-            console.log($scope.goals[subgoal]);
-            /*
-            $scope.goals[subgoal].$update(function(response){
-              $scope.gotdata = response;
-            });
-            */
-
-          });
           
+          subGoalService.$save(function(response) {
+
+            var idsArray = [];
+            for (var i = 0; i < $scope.goals[subgoal].subGoal.length; i+=1) {
+              idsArray.push($scope.goals[subgoal].subGoal[i]._id);
+            }
+            idsArray.push(response._id);
+            $scope.goals[subgoal].subGoal = idsArray;
+
+            $scope.goals[subgoal].$update(function(response){
+              $scope.goals[subgoal] = response;
+              if (response._id !== undefined) {
+                $scope.latestGoals();
+              }
+            });
+          });
+
         }else{
           var goalService = new Goals({
             name: goal.name,
@@ -149,7 +185,7 @@ angular.module('mean.goals').controller('CreateController', ['$scope', 'Global',
             completeBy: goal.completeBy
           });
           goalService.$save(function(response) {
-            $scope.goals.push({'name': goal.name, 'description': goal.description, 'completeBy': goal.completeBy});
+            $scope.goals.push(response);
           });
         }
         return true;

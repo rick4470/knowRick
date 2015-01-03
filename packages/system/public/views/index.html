@@ -18,16 +18,16 @@
             <th>#</th>
             <th>Goal</th>
             <th>Description</th>
+            <th>Progress</th>
             <th>Status</th>
-            <th>Completion Date</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Run 10 miles</td>
-            <td>Go out into the world and run 10 miles in less then 120 minutes</td>
+          <tr ng-repeat="item in goals">
+            <td>#{{$index + 1}}</td>
+            <td>{{item.name}} </td>
+            <td>I am easily going to {{item.name}} no later then {{item.completeBy | date:'longDate' }}.</td>
             <td width="50%">
               <div class="progress progress-striped active">
                 <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
@@ -37,7 +37,8 @@
             </td>
             <td>In the works</td>
             <td>
-              <a ng-click="isCollapsed = !isCollapsed"><i class="fa fa-chevron-right"></i></a>
+              <a ng-if="item.subGoal.length <= 0" ng-click="viewSubGoal(item)"><i class="fa fa-ban"></i></a>
+              <a ng-if="item.subGoal.length > 0" ng-click="viewSubGoal(item)"><i class="fa {{chevron}}"></i></a>
             </td>
           </tr>
         </tbody>
@@ -47,20 +48,25 @@
           <div class="panel-heading">
             <div class="row">
               <div class="col-md-10">
-                <h3 class="panel-title">Run 10 miles</h3>
+                <h3 class="panel-title">{{goalName}}</h3>
               </div>
               <div class="col-md-2">
-                <a class="pull-right"ng-click="isCollapsed = !isCollapsed"><i class="fa fa-chevron-up"></i></a>
+                <a class="pull-right" ng-click="closeChevron();isCollapsed = !isCollapsed"><i class="fa fa-chevron-up"></i></a>
               </div>
             </div>
           </div>
           <div class="panel-body">
             <table class="table table-alternative table-hover">
+              <th>#</th>
+              <th>Goal</th>
+              <th>Description</th>
+              <th>Progress</th>
+              <th>Status</th>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Run 10 miles</td>
-                  <td>Go out into the world and run 10 miles in less then 120 minutes</td>
+                <tr ng-repeat="subGoal in subGoals">
+                  <td>#{{$index + 1}}</td>
+                  <td>I am easily going to {{subGoal.name}} no later then {{subGoal.completeBy | date:'longDate' }}.</td>
+                  <td>{{subGoal.description}}</td>
                   <td width="50%">
                     <div class="progress progress-striped active">
                       <div class="progress-bar" role="progressbar" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
@@ -68,7 +74,9 @@
                       </div><!-- end progress bar -->
                     </div>
                   </td>
-                  <td>In the works</td>
+
+                  <td ng-if="subGoal.isComplete == false">In the works</td>
+                  <td ng-if="subGoal.isComplete == true">Completed</td>
                 </tr>
               </tbody>
             </table>

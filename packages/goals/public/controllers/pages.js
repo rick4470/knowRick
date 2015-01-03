@@ -14,7 +14,7 @@ angular.module('mean.goals').controller('PagesController', ['$scope', '$statePar
 
         page.$save(function(response) {
           $scope.msg = response;
-          $location.path('/goals/year');
+          $location.path('/goals-page');
         });
 
       } else {
@@ -33,7 +33,7 @@ angular.module('mean.goals').controller('PagesController', ['$scope', '$statePar
         });
       } else {
         $scope.page.$remove(function(response) {
-          $location.path('/goals/year');
+          $location.path('/goals-page');
         });
       }
     };
@@ -47,7 +47,7 @@ angular.module('mean.goals').controller('PagesController', ['$scope', '$statePar
         page.updated.push(new Date().getTime());
 
         page.$update(function() {
-          $location.path('/goals/year');
+          $location.path('/goals-page');
         });
       }
     };

@@ -14,8 +14,8 @@ module.exports = function(Goals, app, auth) {
   
   app.route('/goal').get(goals.all);
   app.route('/goal').post(auth.requiresLogin, goals.createGoal);
-  app.route('/goal/:goalId').delete(auth.requiresLogin, goals.destroy);
   app.route('/goal/:goalId').put(auth.requiresLogin, goals.update);
+  app.route('/goal/:goalId').delete(auth.requiresLogin, goals.destroy);
 
   // Finish with setting up the goalId param
   app.param('goalId', goals.goal);

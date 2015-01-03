@@ -6,7 +6,6 @@
 var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-
 /**
  * Goal Schema
  */
@@ -32,11 +31,13 @@ var SubGoalSchema = new Schema({
   },
   goalTotal: {
     type: Number,
-    required: false
+    required: false,
+    default: 0
   },
   goalTotalCompleted: {
     type: Number, 
-    required: false
+    required: false,
+    default: 0
   },
   dateCompleted: {
     type: Date,

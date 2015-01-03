@@ -72,6 +72,13 @@ exports.update = function(req, res) {
   });
 };
 
+/**
+ * Show a goal
+ */
+exports.show = function(req, res) {
+  res.json(req.goal);
+};
+
 
 
 /**

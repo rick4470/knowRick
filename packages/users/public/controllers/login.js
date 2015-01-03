@@ -17,13 +17,12 @@ angular.module('mean.users').controller('loginController', ['$scope', '$rootScop
           $rootScope.$emit('loggedin');
           if (response.redirect) {
             if (window.location.href === response.redirect) {
-              //This is so an admin user will get full admin page
               window.location.reload();
             } else {
               window.location = response.redirect;
             }
           } else {
-            $location.url('/');
+            $location.url('/goals');
           }
         })
         .error(function() {

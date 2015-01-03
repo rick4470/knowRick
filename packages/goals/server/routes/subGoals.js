@@ -14,10 +14,11 @@ module.exports = function(SubGoals, app, auth) {
   
   app.route('/sub-goal').post(auth.requiresLogin, subGoals.createGoal);
   app.route('/sub-goal').get(subGoals.all);
-  app.route('/sub-goal/:goalId').delete(auth.requiresLogin, subGoals.destroy);
-  app.route('/sub-goal/:goalId').put(auth.requiresLogin, subGoals.update);
+  app.route('/sub-goal/:subGoalId').get(auth.isMongoId, subGoals.show);
+  app.route('/sub-goal/:subGoalId').delete(auth.requiresLogin, subGoals.destroy);
+  app.route('/sub-goal/:subGoalId').put(auth.requiresLogin, subGoals.update);
 
-  // Finish with setting up the goalId param
-  app.param('goalId', subGoals.goal);
+  // Finish with setting up the subGoalId param
+  app.param('subGoalId', subGoals.goal);
 
 };

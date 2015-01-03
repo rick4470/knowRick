@@ -40,11 +40,13 @@ var GoalSchema = new Schema({
   },
   goalTotal: {
     type: Number,
-    required: false
+    required: false,
+    default: 0
   },
   goalTotalCompleted: {
     type: Number, 
-    required: false
+    required: false,
+    default: 0
   },
   page: {
     type: Schema.ObjectId,

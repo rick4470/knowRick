@@ -1,12 +1,6 @@
-<footer class="hidden-xs">
-  <p class="pull-left">Hand crafted by <a href="http://saltyslopes.com">SaltySlopes</a> &copy; Copyright 2015.</p>
-  <p class="pull-right">
-    <a ui-sref='auth.login'>Log In</a> <a ui-sref='auth.register'>Join</a> <a href="/logout">Log Out</a> {{global.user.name}}
-  </p>
-  {% for file in aggregatedassets.footer.js %}
-    <script type="text/javascript" src="{{file}}"></script>
-  {% endfor %}
-</footer>
+{% for file in aggregatedassets.footer.js %}
+  <script type="text/javascript" src="{{file}}"></script>
+{% endfor %}
 {% if (process.env.NODE_ENV == 'development') %}
   <!-- Livereload script rendered 
   <script type="text/javascript" src="{{'//' + req.hostname + ':35729/livereload.js'}}"></script> -->

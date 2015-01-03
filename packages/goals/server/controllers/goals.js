@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
   Goal = mongoose.model('Goal'),
+  //SubGoal = mongoose.model('SubGoal'),
    _ = require('lodash');
 
 /**
@@ -37,16 +38,6 @@ exports.all = function(req, res) {
     }
     res.json(goals);
   });
-  /*
-  Goal.find().sort('-created').exec(function(err, goals) {
-    if (err) {
-      return res.status(500).json({
-        error: 'Cannot list the goals'
-      });
-    }
-    res.json(goals);
-  });*/
-
 };
 
 /**
@@ -69,8 +60,8 @@ exports.destroy = function(req, res) {
  * Update an goal
  */
 exports.update = function(req, res) {
-  var goal = req.goal;
 
+  var goal = req.goal;
   goal = _.extend(goal, req.body);
 
   goal.save(function(err) {
@@ -82,8 +73,6 @@ exports.update = function(req, res) {
     res.json(goal);
   });
 };
-
-
 
 /**
  * Find goal by id
