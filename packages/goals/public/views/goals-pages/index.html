@@ -1,0 +1,42 @@
+<div class="max-page" ui-view>
+  <ol class="breadcrumb" ng-controller="breadController" data-ng-init="yearInit()">
+    <li ng-repeat="item in breadCrumbs">
+      <a ui-sref='{{item.location}}'>{{item.name}}</a>
+    </li>
+  </ol>
+  <article>
+    <div ng-controller="PagesController" data-ng-init="find()">
+      <div class="row">
+        <div class="col-md-12">
+        <a ui-sref='goals-page.create'><button class="btn btn-lg btn-light pull-right">Create New Year Page <i class="fa fa-only fa-plus"></i></button></a>
+        </div>
+      </div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>Name</th>
+            <th>Overview</th>
+            <th>Video</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-ng-repeat="page in pages">
+            <td>{{page.year}}</td>
+            <td>{{page.name}}</td>
+            <td>{{page.overview}}</td>
+            <td><a target="_blank" ng-href="{{page.video}}"><i class="fa fa-youtube-play"></i></a></td>
+            <td>
+              <a ui-sref='goals-page.update({pageId: page._id})'><i class="fa fa-pencil-square-o"></i></a>
+
+              <a data-ng-click="remove(page);">
+                <i class="glyphicon glyphicon-trash"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div><!-- end controller -->
+  </article><!-- end article -->
+</div>

@@ -1,0 +1,67 @@
+<section>
+  <ol class="breadcrumb" ng-controller="breadController" data-ng-init="updatePageInit()">
+    <li ng-repeat="item in breadCrumbs">
+      <a ui-sref='{{item.location}}'>{{item.name}}</a>
+    </li>
+  </ol>
+  <article data-ng-controller="PagesController" data-ng-init="findOne()">
+    <div class="page-header">
+      <h2 style="margin:30px 50px 10px;">{{page.name}}</h2>
+    </div><!-- end page-header -->
+
+    <div class="row" ng-show="msg"><div class="alert alert-danger animated fadeIn col-md-6">{{msg}}</div></div>
+
+    <form name="pageForm" data-ng-submit="update(pageForm.$valid, page)"novalidate class="form-horizontal">
+
+      <div class="form-group">
+        <div class="controls">
+          <div class="row">
+            <div class="col-md-6">
+              <input required id="year" type="text" name="year" placeholder="What year?" ng-model="page.year" class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <div class="controls">
+          <div class="row">
+            <div class="col-md-6">
+              <input required id="name" type="text" name="name" placeholder="Enter name" ng-model="page.name" class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="controls">
+          <div class="row">
+            <div class="col-md-6">
+            <textarea rows="3" class="form-control" name="overview" placeholder="Enter an overview" ng-model="page.overview" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="controls">
+          <div class="row">
+            <div class="col-md-6">
+              <input required id="video" type="text" name="video" placeholder="Enter video URL" ng-model="page.video" class="form-control">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <div class="row">
+          <div class="col-md-6">
+            <button type="submit" class="btn btn-primary pull-right">Update page</button>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </article>
+</section>
