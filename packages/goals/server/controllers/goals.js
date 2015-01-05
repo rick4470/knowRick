@@ -75,6 +75,13 @@ exports.update = function(req, res) {
 };
 
 /**
+ * Show a goal
+ */
+exports.show = function(req, res) {
+  res.json(req.goal);
+};
+
+/**
  * Find goal by id
  */
 exports.goal = function(req, res, next, id) {

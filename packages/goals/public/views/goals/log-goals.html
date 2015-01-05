@@ -1,0 +1,134 @@
+<section>
+  <ol class="breadcrumb" ng-controller="breadController" data-ng-init="todayInit()">
+    <li ng-repeat="item in breadCrumbs">
+      <a ui-sref='{{item.location}}'>{{item.name}}</a>
+    </li>
+  </ol>
+  
+  <article ng-controller="LogController">
+  {{gotdata}}
+    <div class="row">
+      <div class="col-md-8">
+        <blockquote class="large center" ng-controller="HeaderController" style="font-size: 17px;">
+        {{quote}}
+        <small>{{author}}</small>
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h4>Hello {{global.user.name}}, let's track those goals.</h4>
+      </div>
+    </div>
+
+
+    <div id="accordion" class="panel-group">
+      <div class="panel panel-default" ng-repeat="goal in goals">
+        
+        <div class="panel-heading">
+          <div class="row">
+            <div class="col-md-6">
+              <a href="#collapseOne" data-parent="#accordion" data-toggle="collapse" class="panel-toggle collapsed">#{{$index + 1}}| I am easily going to {{goal.name}} no later then {{goal.completeBy | date:'longDate' }}.
+
+              </a>    
+            </div>
+            <div class="col-md-6">
+              <div class="progress progress-striped active">
+                <div class="progress-bar" role="progressbar" aria-valuenow="{{goal.goalTotalCompleted}}" aria-valuemin="0" aria-valuemax="{{goal.goalTotal}}" style="width: {{(goal.goalTotalCompleted/goal.goalTotal)*100}}%">
+                </div><!-- end progress bar -->
+              </div>
+            </div>
+          </div>
+        </div><!-- end panel-heading -->
+        <div class="panel-collapse collapse" id="collapseOne" style="height: 0px;">
+          <div class="panel-body">
+            <div class="row" ng-repeat="subgoal in goal.subGoal">
+              <div class="col-md-3">
+                I am easily going to {{subgoal.name}} no later then {{subgoal.completeBy | date:'longDate' }}
+              </div>
+              <div class="col-md-6">
+                <slider 
+                  floor='{{ floor }}' 
+                  ceiling='{{ subgoal.goalTotal }}' 
+                  step='{{ step }}' 
+                  precision='{{ precision }}' 
+                  ng-model='subgoal.goalTotalCompleted'
+                  style="width: {{ sliderWidth }};"
+                  ng-mouseup="setValue(goal, subgoal)"
+                  ng-change="change(goal, subgoal.goalTotalCompleted, $index)">
+                </slider>
+              </div>
+              <div class="col-md-2">
+                <input type="text" class="form-control"  ng-model="subgoal.goalTotalCompleted" type="text">
+              </div>
+              <div class="col-md-1">
+                <sup>{{subgoal.goalTotalCompleted}}</sup> &#8260; <sub>{{subgoal.goalTotal}}</sub> 
+              </div>
+            </div>
+          </div><!-- end panel-body -->
+        </div><!-- end panel-collapse -->
+      </div><!-- end panel -->
+    </div>
+  </article>
+</section>
+
+
+<script type="text/ng-template" id="progressTemplate.html">
+<div class="modal-header" ng-controller="LogController"> 
+  <h3 class="modal-title">{{actionType}} a log for this progress</h3>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form name="progressForm" novalidate class="form-horizontal">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="form-group" >
+                  <div class="controls">
+                    <div class="row">
+                      <div class="col-md-6">
+                      I am easily going to {{subgoal.name}} no later then {{subgoal.completeBy | date:'longDate' }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6 margin-top-50">
+                      <textarea required rows="10" class="form-control" name="note" placeholder="Give your self a note about this progress" ng-model="note" class="form-control" required></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+              <div class="col-md-6">
+                <slider 
+                  floor='{{ floor }}' 
+                  ceiling='{{ subgoal.goalTotal }}' 
+                  step='{{ step }}' 
+                  precision='{{ precision }}' 
+                  ng-model='subgoal.goalTotalCompleted'
+                  style="width: {{ sliderWidth }};"
+                  ng-change="change(goal, subgoal.goalTotalCompleted, $index)">
+                </slider>
+              </div>
+              <div class="col-md-2">
+                <input type="text" class="form-control"  ng-model="subgoal.goalTotalCompleted" type="text">
+              </div>
+              <div class="col-md-1">
+                <sup>{{subgoal.goalTotalCompleted}}</sup> &#8260; <sub>{{subgoal.goalTotal}}</sub> 
+              </div>
+            </div>
+        </form>  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-light" ng-click="cancel()">Cancel</button>
+  <button class="btn btn-inverse pull-right" ng-click="ok(note)" ng-disabled="progressForm.$invalid">Log it!</button>
+</div>
+</script>

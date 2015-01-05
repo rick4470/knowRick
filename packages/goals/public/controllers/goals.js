@@ -28,13 +28,24 @@ angular.module('mean.goals').controller('CreateController', ['$scope', 'Global',
     $scope.delete = function(index, subgoal){
       if (subgoal !== undefined) {
         if (index > -1) {
-          //
-          console.log();
           SubGoals.get({
             subGoalId: $scope.goals[index].subGoal[subgoal]._id
           }, function(subGoal) {
+
             subGoal.$remove(function(response) {
               $scope.goals[index].subGoal.splice(subgoal, 1);
+
+              var idsArray = [];
+              for (var i = 0; i < $scope.goals[index].subGoal.length; i+=1) {
+                idsArray.push($scope.goals[index].subGoal[i]._id);
+              }
+              $scope.goals[index].subGoal = idsArray;
+              $scope.goals[index].goalTotal -= response.goalTotal;
+
+              $scope.goals[index].$update(function(response){
+                $scope.goals[index] = response;
+              });
+              
             });
           });
         }
@@ -157,7 +168,7 @@ angular.module('mean.goals').controller('CreateController', ['$scope', 'Global',
           var subGoalService = new SubGoals({
             name: goal.name,
             description: goal.description,
-            goalTotal: goal.total,
+            goalTotal: goal.goalTotal,
             completeBy: goal.completeBy
           });
           
@@ -169,6 +180,7 @@ angular.module('mean.goals').controller('CreateController', ['$scope', 'Global',
             }
             idsArray.push(response._id);
             $scope.goals[subgoal].subGoal = idsArray;
+            $scope.goals[subgoal].goalTotal += response.goalTotal;
 
             $scope.goals[subgoal].$update(function(response){
               $scope.goals[subgoal] = response;

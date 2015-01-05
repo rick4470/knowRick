@@ -30,8 +30,7 @@
             <td>I am easily going to {{item.name}} no later then {{item.completeBy | date:'longDate' }}.</td>
             <td width="50%">
               <div class="progress progress-striped active">
-                <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-                  <span class="sr-only">45% Complete</span>
+                <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: {{(item.goalTotalCompleted/item.goalTotal)*100}}%">
                 </div><!-- end progress bar -->
               </div>
             </td>
@@ -48,7 +47,7 @@
           <div class="panel-heading">
             <div class="row">
               <div class="col-md-10">
-                <h3 class="panel-title">{{goalName}}</h3>
+                <h3 class="panel-title">I am easily going to {{goalName}} no later then {{completeBy | date:'longDate' }}.</h3>
               </div>
               <div class="col-md-2">
                 <a class="pull-right" ng-click="closeChevron();isCollapsed = !isCollapsed"><i class="fa fa-chevron-up"></i></a>
@@ -69,8 +68,7 @@
                   <td>{{subGoal.description}}</td>
                   <td width="50%">
                     <div class="progress progress-striped active">
-                      <div class="progress-bar" role="progressbar" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100" style="width: 45%">
-                        <span class="sr-only">45% Complete</span>
+                      <div class="progress-bar" role="progressbar" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100" style="width: {{(subGoal.goalTotalCompleted/subGoal.goalTotal)*100}}%">
                       </div><!-- end progress bar -->
                     </div>
                   </td>

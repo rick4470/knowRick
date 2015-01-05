@@ -21,6 +21,7 @@ angular.module('mean.system').controller('IndexController', ['$scope', 'Global',
         $scope.chevron = 'fa-chevron-down';
         $scope.subGoals = goal.subGoal;
         $scope.goalName = goal.name;
+        $scope.completeBy = goal.completeBy;
         $scope.isCollapsed = false;
       }
     };

@@ -34,9 +34,9 @@ angular.module('mean.goals').config(['$stateProvider',
       resolve: {
         loggedin: checkLoggedin
       }
-    }).state('goals.today', {
-      url: '/today',
-      templateUrl: 'goals/views/goals/today.html',
+    }).state('goals.log', {
+      url: '/log',
+      templateUrl: 'goals/views/goals/log-goals.html',
       resolve: {
         loggedin: checkLoggedin
       }
