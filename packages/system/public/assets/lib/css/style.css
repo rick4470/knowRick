@@ -480,17 +480,17 @@ dl:after {
 .btn-default {
   color: #fff;
   background-color: #333 !important;
-  border-color: #16a085 !important;
+  border-color: #F5B1A8 !important;
 }
 .btn-default:hover,
 .btn-default:focus {
   color: #fff;
-  background-color: #24d1af !important;
+  background-color: #f96e5b !important;
 }
 .btn-default:active,
 .btn-default.active {
   color: #fff;
-  background-color: #16a085 !important;
+  background-color: #F5B1A8 !important;
 }
 .btn-primary {
   background-color: #388ce0 !important;
@@ -814,8 +814,8 @@ dl:after {
 }
 .btn-group.dropup:hover .btn,
 .btn-group.dropdown:hover .btn {
-  background: #16a085 !important;
-  border-right-color: #16a085 !important;
+  background: #F5B1A8 !important;
+  border-right-color: #F5B1A8 !important;
 }
 .btn-group.dropup:hover .dropdown-toggle.btn,
 .btn-group.dropdown:hover .dropdown-toggle.btn {
@@ -924,7 +924,7 @@ dl:after {
   background: #333 !important;
 }
 .btn-group.open .dropdown-toggle.btn {
-  background: #16a085 !important;
+  background: #F5B1A8 !important;
 }
 .btn-group.open .btn-info {
   background: #66b9f9 !important;
@@ -1530,7 +1530,7 @@ a.list-group-item.active:focus {
 }
 .pagination-wrapper ul.pagination li a:hover,
 .pagination-wrapper ul.pagination li a:focus {
-  background: #16a085;
+  background: #F5B1A8;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
@@ -1553,7 +1553,7 @@ a.list-group-item.active:focus {
 .pagination-wrapper ul.pagination li.active a:active {
   margin: 0;
   color: #fff;
-  background: #24d1af;
+  background: #f96e5b;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
@@ -1723,7 +1723,7 @@ ul.popover-examples li {
 .tabbable .nav-tabs li.open .dropdown-toggle {
   color: #fff;
   background: #333;
-  border-color: #16a085;
+  border-color: #F5B1A8;
 }
 .tabbable .nav-tabs li.open .dropdown-toggle .caret {
   color: #fff;

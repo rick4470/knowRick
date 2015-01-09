@@ -1,38 +1,57 @@
 'use strict';
 
-angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Global', '$http',
-  function($scope, $rootScope, Global, $http) {
+angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Global', '$http', '$location',
+  function($scope, $rootScope, Global, $http, $location) {
     $scope.global = Global;
 
-    var pages = [
-      {
-        'id': 0,
-        'active': 'active',
-        'location': 'root',
-        'icon': 'fa-check',
-        'name': 'Goals'
-      },{
-        'id': 1,
-        'active': '',
-        'location': 'root.about',
-        'icon': 'fa-book',
-        'name': 'About'
-      },{
-        'id': 2,
-        'active': '',
-        'location': 'root.blog',
-        'icon': 'fa-pencil',
-        'name': 'Blog'
-      },{
-        'id': 3,
-        'active': '',
-        'location': 'root.contact',
-        'icon': 'fa-envelope-o',
-        'name': 'Contact'
+    $scope.setSideBar = function() {
+      var path = $location.path();
+      var pages = [
+        {
+          'id': 0,
+          'active': 'active',
+          'location': 'root',
+          'icon': 'fa-check',
+          'name': 'Goals'
+        },{
+          'id': 1,
+          'active': '',
+          'location': 'root.about',
+          'icon': 'fa-book',
+          'name': 'About'
+        },{
+          'id': 2,
+          'active': '',
+          'location': 'root.blog',
+          'icon': 'fa-pencil',
+          'name': 'Blog'
+        },{
+          'id': 3,
+          'active': '',
+          'location': 'root.contact',
+          'icon': 'fa-envelope-o',
+          'name': 'Contact'
+        }
+      ];
+      
+      for (var i = 0; i < pages.length; i += 1) {
+        path = 'root.' + path.replace('/', '');
+        if (pages[i].location === path) {
+          pages[i].active = 'active';
+        }else{
+          if (path === pages[i].location + '.') {
+            pages[i].active = 'active';
+          }else{
+            if (pages[i].active === 'active') {
+              pages[i].active = '';
+            }
+          }
+        }
+        path = path.replace('root.', '');
       }
-    ];
-
-    $scope.pages = pages;
+      $scope.pages = pages;
+    };
+    $scope.setSideBar();
 
     var years = [
       {

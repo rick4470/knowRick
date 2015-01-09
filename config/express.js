@@ -24,7 +24,7 @@ function onAggregatedSrc(loc,ext,res,next,data){
 }
 
 module.exports = function(app, passport, db) {
-
+  
   app.set('showStackError', true);
 
   // Prettify HTML
@@ -112,4 +112,5 @@ module.exports = function(app, passport, db) {
 
   // Connect flash for flash messages
   app.use(flash());
+
 };
