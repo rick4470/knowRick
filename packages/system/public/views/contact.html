@@ -1,1 +1,68 @@
-contact page
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+  <div ui-view>
+    <div class="max-page" data-ng-controller="ContactController">
+      <article class="aspect-ratio aspect-ratio-16-9">
+        <div class="page-header">
+          <h1>Contact</h1>
+          <p class="lead">Trying to get a hold of me? fill out the form below and let's start conversating.</p>
+        </div><!-- end page-header -->
+        <div class="google-map"><iframe src="https://www.google.com/maps/embed/v1/place?q=San%20Diego%2C%20CA%2C%20United%20States&key=AIzaSyBTEBRLzGfWPqoPEY8mrJ71GdP1M66FZj0" width="770" height="200" frameborder="0"></iframe></div>
+        <div ng-hide="sendMessage">
+          <h2 class="margin-top-50">Send me a message</h2>
+
+          <div class="alert alert-danger" role="alert" ng-show="msg">
+            <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+            <span class="sr-only">Error:</span>
+            {{msg}}
+          </div>
+
+          <form class="form-horizontal form-contact" name="contactForm" novalidate >
+            <div class="form-group">
+              <label class="control-label" for="inputName">Name</label>
+              <div class="controls">
+                <div class="row">
+                  <div class="col-md-6">
+                    <input type="text" id="inputName" placeholder="Your Name" class="form-control"  ng-model="formData.name" required>
+                  </div><!-- end col -->
+                </div><!-- end row -->
+              </div><!-- end controls -->
+            </div><!-- end form-group -->
+            <div class="form-group">
+              <label class="control-label" for="inputEmail">Email Address</label>
+              <div class="controls">
+                <div class="row">
+                  <div class="col-md-6">
+                    <input type="text" id="inputEmail" placeholder="Your Email Address" class="form-control" ng-model="formData.email" required>
+                  </div><!-- end col -->
+                </div><!-- end row -->
+              </div><!-- end controls -->
+            </div><!-- end form-group -->
+            <div class="form-group">
+              <label class="control-label" for="inputMessage">Message</label>
+              <div class="controls">
+                <div class="row">
+                  <div class="col-md-10">
+                    <textarea id="inputMessage" placeholder="Your Message" class="form-control" rows="10" ng-model="formData.message" required></textarea>
+                  </div><!-- end col -->
+                </div><!-- end row -->
+              </div><!-- end controls -->
+            </div><!-- end form-group -->
+            <div class="form-actions form-actions-no-bg">
+              <button type="submit" ng-click="processForm()" class="btn btn-primary" type="button" ng-disabled="contactForm.$invalid">Send Message</button>
+            </div><!-- end form-actions -->
+          </form>
+        </div>
+
+        <div ng-show="sendMessage">
+          <p>Message sent</p>
+        </div>
+        
+      </article><!-- end article -->
+    </div>
+  </div>
+  </div>
+  <div class="col-md-1"></div>
+</div>
+

@@ -66,7 +66,8 @@
     "swig": "1.4.2",
     "time-grunt": "^1.0.0",
     "view-helpers": "0.1.5",
-    "cors" : "~2.5.2"
+    "cors": "~2.5.2",
+    "request": "~2.51.0"
   },
   "devDependencies": {
     "expect.js": "0.3.1",

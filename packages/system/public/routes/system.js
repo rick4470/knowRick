@@ -62,6 +62,9 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
     }).state('root.blog', {
       url: 'blog',
       templateUrl: 'system/views/blog.html'
+    }).state('root.blog.post', {
+      url: '/post/:postId',
+      templateUrl: 'system/views/blog-post.html'
     }).state('root.contact', {
       url: 'contact',
       templateUrl: 'system/views/contact.html'

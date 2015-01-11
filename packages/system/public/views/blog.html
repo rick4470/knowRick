@@ -1,32 +1,42 @@
-<div ng-controller="BlogController">
-  <div class="card film art">
-    <a href="blog-post.html" class="thumb">
-      <img src="img/sample/sintel/sample-sintel-1.jpg" alt="" title="">
-      <span class="overlay"><span class="fa fa-search"></span></span>
-    </a>
+<div ng-controller="BlogController" ui-view ng-hide="message">
+
+  <div ng-show="loading">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...
+  </div>
+
+  <div class="card film art" ng-repeat="post in posts" ng-hide="loading">
+    <div style="max-height: 145px;">
+      <a ui-sref='root.blog.post({postId: post.uuid})' class="thumb">
+        <img ng-src="http://blog.knowrick.com{{post.image}}" alt="" title="" style="max-height:150px; min-height:150px;">
+      </a>
+    </div>
+
     <div class="card-body">
-      <h2><a href="blog-post.html">Sintel at Seattle International Film Festival</a></h2>
-      <p class="post-meta">Saturday 27 April</p>
-      <p>The cinema where Sintel screens has digital 4k projection, I’m working with them getting this formatted right and delivered. Would be a real ...</p>
-      <p><a href="blog-post.html">Read More</a></p>
+      <h3><a ui-sref='root.blog.post({postId: post.uuid})'>{{post.title}}</a></h3>
+      <p class="post-meta">{{post.published_at | date:'longDate'}}</p>
+      <p>{{post.meta_description}}</p>
+      <p><a ui-sref='root.blog.post({postId: post.uuid})'>Read More</a></p>
     </div><!-- end card-body -->
     <div class="card-footer">
       <ul class="list-inline filters">
-        <li><span class="fa fa-list-ul"></span><a href="#none">Film</a></li>
-        <li><span class="fa fa-comments"></span>5</li>
+        <li><span class="fa fa-tags"></span><a href="/post/{{post.uuid}}">{{post.slug}}</a></li>
       </ul>
     </div><!-- end card-footer -->
   </div><!-- end card -->
 
-  <div class="pagination-wrapper">
+
+  <div class="pagination-wrapper" ng-hide="loading">
     <ul class="pagination">
-      <li class="disabled"><span>Prev</span></li>
-      <li class="active"><a href="">1</a></li>
-      <li><a href="">2</a></li>
-      <li><a href="">3</a></li>
-      <li><a href="">4</a></li>
-      <li><a href="">5</a></li>
-      <li><a href="">Next</a></li>
+      <li class="{{previousPage}}"><span>Prev</span></li>
+      <li class="active">
+        <a href="">{{pagination.page}}</a>
+      </li>
+      <li class="{{previousPage}}"><span>Next</span></li>
     </ul>
   </div><!-- end pagination-wrapper -->
+</div>
+
+
+<div ng-controller="BlogController" ng-show="message" ui-view>
+  <button class="btn btn-sm btn-warning" ng-click="getBlogPosts()">Get blog posts!</button>
 </div>

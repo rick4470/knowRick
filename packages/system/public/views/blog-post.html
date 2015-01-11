@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-1"></div>
+  <div class="col-md-10">
+  <div ng-show="loading">
+    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...
+  </div>
+    <div class="max-page" ng-hide="loading">
+      <article>
+        <div class="page-header">
+          <img src="http://blog.knowrick.com{{post.image}}" style="max-height: 450px;">
+          <h1>{{post.title}}</h1>
+          <p class="lead">{{post.meta_description}}</p>
+        </div><!-- end page-header -->
+        <ul class="list-inline post-meta">
+          <li><span class="fa fa-calendar"></span>{{post.published_at | date:'longDate'}}</li>
+          <li><span class="fa fa-user"></span> Written by: <a href="#none">Rick H</a></li>
+          <li><span class="fa fa-tags"></span>Posted in: <a href="#none">{{post.slug}}</a></li>
+        </ul><!-- end post-meta -->
+        <div class="post-content" ng-bind-html="post.html">
+        </div><!-- end post-content -->
+      </article>
+    </div>
+  </div>
+  <div class="col-md-1"></div>
+</div>
+

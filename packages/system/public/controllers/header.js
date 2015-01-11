@@ -44,6 +44,10 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
           }else{
             if (pages[i].active === 'active') {
               pages[i].active = '';
+            }else{
+              if (path.indexOf(pages[i].location) > -1) {
+                pages[i].active = 'active';
+              }
             }
           }
         }

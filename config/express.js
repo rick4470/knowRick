@@ -24,7 +24,6 @@ function onAggregatedSrc(loc,ext,res,next,data){
 }
 
 module.exports = function(app, passport, db) {
-  
   app.set('showStackError', true);
 
   // Prettify HTML
@@ -51,7 +50,6 @@ module.exports = function(app, passport, db) {
 
   // set .html as the default extension
   app.set('view engine', 'html');
-
   // The cookieParser should be above session
   app.use(cookieParser());
 
@@ -62,6 +60,7 @@ module.exports = function(app, passport, db) {
     extended: true
   }));
   app.use(methodOverride());
+
 
   // Import the assets file and add to locals
   var assets = assetmanager.process({
