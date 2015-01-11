@@ -63,3 +63,5 @@ test/coverage/
 modules/public/
 modules/views/
 /public/build/
+config/env/all.js
+config/env/production.js

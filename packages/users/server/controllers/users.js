@@ -9,8 +9,8 @@ var mongoose = require('mongoose'),
   config = require('meanio').loadConfig(),
   crypto = require('crypto'),
   nodemailer = require('nodemailer'),
-  templates = require('../template');
-
+  templates = require('../template'),
+  config = require('meanio').loadConfig();
 /**
  * Auth callback
  */
@@ -47,8 +47,7 @@ exports.session = function(req, res) {
  * validate secrete 
  */
   exports.validateCode = function (req, res, next) {
-    var code = 'T5RyTSgz';
-    if (req.body.secret === code) {
+    if (req.body.secret === config.invitationCode) {
       next();
     }else{
       return res.status(403).json({msg: 'Invalid code!'});
