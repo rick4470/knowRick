@@ -46,7 +46,11 @@ var SubGoalSchema = new Schema({
   completeBy: {
     type: Date,
     required: false
-  }
+  },
+  progress: [{
+    type: Schema.ObjectId,
+    ref: 'Progress'
+  }]
 });
 
 /**
@@ -55,6 +59,6 @@ var SubGoalSchema = new Schema({
 SubGoalSchema.statics.load = function(id, cb) {
   this.findOne({
     _id: id
-  }).populate('user', 'name username').exec(cb);
+  }).populate('progress', 'note').exec(cb);
 };
 mongoose.model('SubGoal', SubGoalSchema);

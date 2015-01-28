@@ -9,6 +9,7 @@ angular.module('mean.goals').controller('LogController', ['$scope', 'Global', 'G
     $scope.precision = 0;
     $scope.sliderWidth = '400px';
     $scope.previousValues = [];
+    $scope.oneAtATime = true;
     
 
     $scope.latestGoals = function() {
@@ -21,8 +22,6 @@ angular.module('mean.goals').controller('LogController', ['$scope', 'Global', 'G
         }
       });
     };
-
-    $scope.latestGoals();
 
     $scope.setValue = function(goal, subgoal) {
       logProgress(goal, subgoal);
@@ -57,6 +56,7 @@ angular.module('mean.goals').controller('LogController', ['$scope', 'Global', 'G
     };
 
     function logProgress (goal, subgoal) {
+
       var ModalInstanceCtrl = function($scope, $modalInstance) {
         $scope.floor = 0;
         $scope.step = 1;
@@ -91,13 +91,26 @@ angular.module('mean.goals').controller('LogController', ['$scope', 'Global', 'G
           $scope.goalResource.goalTotalCompleted = goal.goalTotalCompleted;
           $scope.goalResource.$update(function(response){});
         });
-        
+
+        var progress = {
+          note: note,
+          goalTotal: subgoal.goalTotalCompleted,
+        };
+
         SubGoals.get({
           subGoalId: subgoal._id
         }, function(data) {
           $scope.subGoalResource = data;
           $scope.subGoalResource.goalTotalCompleted = subgoal.goalTotalCompleted;
-          $scope.subGoalResource.$update(function(response){});
+          var prgoressArray = [];
+          for (var i = 0; i < $scope.subGoalResource.progress.length; i += 1) {
+            prgoressArray.push($scope.subGoalResource.progress[i]._id);
+          }
+          $scope.subGoalResource.progress = prgoressArray;
+          $scope.subGoalResource.newProgress = progress;
+          $scope.subGoalResource.$update(function(response){
+            console.log(response);
+          });
         });
 
         return true;

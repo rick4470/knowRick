@@ -5,6 +5,7 @@
  */
 var mongoose = require('mongoose'),
   SubGoal = mongoose.model('SubGoal'),
+  Progress = mongoose.model('Progress'),
    _ = require('lodash');
 
 /**
@@ -61,6 +62,24 @@ exports.update = function(req, res) {
   var goal = req.goal;
 
   goal = _.extend(goal, req.body);
+
+  if (req.body.newProgress.note && req.body.newProgress.goalTotal) {
+    var progressObj = {
+      note: req.body.newProgress.note,
+      goalTotal: req.body.newProgress.goalTotal
+    };
+
+    var progress = new Progress(progressObj);
+
+    progress.save(function(err) {
+      if (err) {
+        return res.status(500).json({
+          error: 'Cannot update the goal'
+        });
+      }
+    });
+    goal.progress.push(progress._id);
+  }
 
   goal.save(function(err) {
     if (err) {

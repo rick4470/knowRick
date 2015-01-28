@@ -30,7 +30,7 @@ exports.createGoal = function(req, res) {
  */
 exports.all = function(req, res) {
 
-  Goal.find().populate('subGoal').exec(function(err, goals){
+  Goal.find().sort('created').populate('subGoal').exec(function(err, goals){
     if (err) {
       return res.status(500).json({
         error: 'Cannot list the goals'
