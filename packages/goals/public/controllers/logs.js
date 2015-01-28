@@ -108,9 +108,7 @@ angular.module('mean.goals').controller('LogController', ['$scope', 'Global', 'G
           }
           $scope.subGoalResource.progress = prgoressArray;
           $scope.subGoalResource.newProgress = progress;
-          $scope.subGoalResource.$update(function(response){
-            console.log(response);
-          });
+          $scope.subGoalResource.$update(function(response){});
         });
 
         return true;
