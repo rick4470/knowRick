@@ -2,6 +2,7 @@
   "name": "goals",
   "version": "0.0.1",
   "dependencies": {
-    "venturocket-angular-slider": "~0.3.2"
+    "venturocket-angular-slider": "~0.3.2",
+    "angular-timer": "~1.2.1"
   }
 }

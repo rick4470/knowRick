@@ -124,3 +124,7 @@ a:hover, a:focus {
   color: #f96e5b;
   text-decoration: underline;
 }
+
+.well h2{
+  text-align: center;
+}

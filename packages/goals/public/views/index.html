@@ -1,9 +1,15 @@
-<div class="max-page" ui-view>
+  <div class="max-page" ui-view>
   <ol class="breadcrumb" ng-controller="breadController" data-ng-init="indexInit()">
     <li ng-repeat="item in breadCrumbs">
       <a ui-sref='{{item.location}}'>{{item.name}}</a>
     </li>
   </ol>
+
+
+  
+  <div class="well">
+    <h2> <timer end-time="1451628000000">{{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer></h2>
+  </div>
   <article>
     <div class="row padding-bottom-10">
       <div class="col-md-6">

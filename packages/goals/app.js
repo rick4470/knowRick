@@ -15,10 +15,12 @@ Goals.register(function(app, auth, database) {
   var libDir = '../lib/';
   Goals.aggregateAsset('js', libDir + 'angular-touch/angular-touch.js');
   Goals.aggregateAsset('js', libDir + 'venturocket-angular-slider/build/angular-slider.min.js');
+  Goals.aggregateAsset('js', libDir + 'angular-timer/dist/angular-timer.js');
   
   // Make sure that angular package knows about any injections.
   Goals.angularDependencies([
-    'vr.directives.slider'
+    'vr.directives.slider',
+    'timer'
   ]);
   
   return Goals;
