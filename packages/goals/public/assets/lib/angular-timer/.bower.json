@@ -29,6 +29,5 @@
   },
   "_source": "git://github.com/siddii/angular-timer.git",
   "_target": "~1.2.1",
-  "_originalSource": "angular-timer",
-  "_direct": true
+  "_originalSource": "angular-timer"
 }
