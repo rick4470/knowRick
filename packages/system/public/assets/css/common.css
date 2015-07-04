@@ -41,7 +41,13 @@ video{
 
 /* Mobile Styles */
 @media screen and (max-width: 767px){
-  .goals-public-view.max-page article{
+  .goals-public-view.max-page article.no-padding{
     padding: 0px !important;
+  }
+  .hide-on-mobile{
+    display: none;
+  }
+  .goals-public-view.max-page article{
+    padding: 10px 30px;
   }
 }

@@ -1,83 +1,83 @@
 <div class="row">
-<div class="col-md-12">
-<div ui-view>
-  <div class="max-page goals-public-view" data-ng-controller="IndexController" ng-init="pageInit()">
-    <article class="aspect-ratio aspect-ratio-16-9 no-padding">
-      <video controls="" preload="none">
-        <source src="intro.mp4" type="video/mp4">
-      </video>
-    </article><!-- end article -->
+<div class="col-md-11">
+  <div ui-view>
+    <div class="max-page goals-public-view" data-ng-controller="IndexController" ng-init="pageInit()">
+      <article class="aspect-ratio aspect-ratio-16-9 no-padding">
+        <video controls="" preload="none">
+          <source src="intro.mp4" type="video/mp4">
+        </video>
+      </article><!-- end article -->
 
-    <article>
-      <h4>{{page.name}}</h4>
-      <p>{{page.overview}}</p>
-    </article>
+      <article>
+        <h4>{{page.name}}</h4>
+        <p>{{page.overview}}</p>
+      </article>
 
-    <article>
-      <accordion close-others="oneAtATime"  ng-show="open">
-        <accordion-group is-open="status.open" ng-init="status.open=true">
-            <accordion-heading>
-               <a href="" style="text-decoration: none;"> I am easily going to {{goalName}} no later then {{completeBy | date:'longDate' }}. <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i></a>
-            </accordion-heading>
+      <article class="no-padding">
+        <accordion close-others="oneAtATime"  ng-show="open">
+          <accordion-group is-open="status.open" ng-init="status.open=true">
+              <accordion-heading>
+                 <a href="" style="text-decoration: none;"> I am easily going to {{goalName}} no later then {{completeBy | date:'longDate' }}. <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i></a>
+              </accordion-heading>
+          <table class="table table-alternative table-hover goals-table">
+            <th class="hide-on-mobile">#</th>
+            <th>Goal</th>
+            <th class="hide-on-mobile">Description</th>
+            <th>Progress</th>
+            <th class="hide-on-mobile">Status</th>
+            <tbody>
+              <tr ng-repeat="subGoal in subGoals">
+                <td class="hide-on-mobile">#{{$index + 1}}</td>
+                <td>I am easily going to {{subGoal.name}} no later then {{subGoal.completeBy | date:'longDate' }}.</td>
+                <td class="hide-on-mobile">{{subGoal.description}}</td>
+                <td width="50%">
+                  <div class="progress progress-striped active">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100" style="width: {{(subGoal.goalTotalCompleted/subGoal.goalTotal)*100}}%">
+                    </div><!-- end progress bar -->
+                  </div>
+                </td>
+
+                <td class="hide-on-mobile" ng-if="subGoal.isComplete == false">In the works</td>
+                <td class="hide-on-mobile" ng-if="subGoal.isComplete == true">Completed</td>
+              </tr>
+            </tbody>
+          </table>
+          </accordion-group>
+        </accordion>
         <table class="table table-alternative table-hover">
-          <th>#</th>
-          <th>Goal</th>
-          <th>Description</th>
-          <th>Progress</th>
-          <th>Status</th>
+          <thead>
+            <tr>
+              <th class="hide-on-mobile">#</th>
+              <th>Goal</th>
+              <th class="hide-on-mobile">Description</th>
+              <th>Progress</th>
+              <th class="hide-on-mobile">Status</th>
+              <th class="hide-on-mobile"></th>
+            </tr>
+          </thead>
           <tbody>
-            <tr ng-repeat="subGoal in subGoals">
-              <td>#{{$index + 1}}</td>
-              <td>I am easily going to {{subGoal.name}} no later then {{subGoal.completeBy | date:'longDate' }}.</td>
-              <td>{{subGoal.description}}</td>
+            <tr ng-repeat="item in goals">
+              <td class="hide-on-mobile">#{{$index + 1}}</td>
+              <td>{{item.name}} </td>
+              <td class="hide-on-mobile">I am easily going to {{item.name}} no later then {{item.completeBy | date:'longDate' }}.</td>
               <td width="50%">
                 <div class="progress progress-striped active">
-                  <div class="progress-bar" role="progressbar" aria-valuenow="24" aria-valuemin="0" aria-valuemax="100" style="width: {{(subGoal.goalTotalCompleted/subGoal.goalTotal)*100}}%">
+                  <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: {{(item.goalTotalCompleted/item.goalTotal)*100}}%">
                   </div><!-- end progress bar -->
                 </div>
               </td>
-
-              <td ng-if="subGoal.isComplete == false">In the works</td>
-              <td ng-if="subGoal.isComplete == true">Completed</td>
+              <td class="hide-on-mobile">In the works</td>
+              <td class="hide-on-mobile">
+                <a ng-if="item.subGoal.length <= 0" ng-click="viewSubGoal(item)"><i class="fa fa-ban"></i></a>
+                <a ng-if="item.subGoal.length > 0" ng-click="viewSubGoal(item)" href=""><i class="fa fa-tasks"></i></a>
+              </td>
             </tr>
           </tbody>
         </table>
-        </accordion-group>
-      </accordion>
-      <table class="table table-alternative table-hover">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Goal</th>
-            <th>Description</th>
-            <th>Progress</th>
-            <th>Status</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat="item in goals">
-            <td>#{{$index + 1}}</td>
-            <td>{{item.name}} </td>
-            <td>I am easily going to {{item.name}} no later then {{item.completeBy | date:'longDate' }}.</td>
-            <td width="50%">
-              <div class="progress progress-striped active">
-                <div class="progress-bar" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: {{(item.goalTotalCompleted/item.goalTotal)*100}}%">
-                </div><!-- end progress bar -->
-              </div>
-            </td>
-            <td>In the works</td>
-            <td>
-              <a ng-if="item.subGoal.length <= 0" ng-click="viewSubGoal(item)"><i class="fa fa-ban"></i></a>
-              <a ng-if="item.subGoal.length > 0" ng-click="viewSubGoal(item)" href=""><i class="fa fa-tasks"></i></a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
 
-    </article>
+      </article>
+    </div>
   </div>
 </div>
-  </div>
-  <div class="col-md-1"></div>
-</div>
+<div class="col-md-1"></div>
+</div> <!-- End of Row -->
