@@ -1,3 +1,4 @@
+/* global angular */
 'use strict';
 angular.module('mean.system').controller('BlogController', ['$scope', 'Global','BlogService',
   '$stateParams', '$sce',

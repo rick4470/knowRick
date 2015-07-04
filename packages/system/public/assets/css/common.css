@@ -7,7 +7,7 @@ video{
 }
 .max-page article{
   margin: 0 0 30px;
-  padding: 50px 50px 30px;
+  padding: 20px 25px;
   position: relative;
   background: #fff;
   -webkit-border-radius: 4px;
@@ -29,6 +29,10 @@ video{
     -webkit-animation: spin2 .7s infinite linear;
 }
 
+.table {
+  margin-bottom: 0px;
+}
+
 @-webkit-keyframes spin2 {
     from { -webkit-transform: rotate(0deg);}
     to { -webkit-transform: rotate(360deg);}
@@ -38,6 +42,15 @@ video{
     from { transform: scale(1) rotate(0deg);}
     to { transform: scale(1) rotate(360deg);}
 }
+
+/* Menu for login auth */
+.dropdown-menu li{
+  padding: 5px 10px;
+}
+ul.dropdown-menu{
+  background-color: #FFF2E7;
+}
+
 
 /* Mobile Styles */
 @media screen and (max-width: 767px){

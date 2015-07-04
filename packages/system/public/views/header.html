@@ -37,7 +37,7 @@
         <li><a ui-sref='auth.register'>Join</a>
         </li>
         <li class="divider-vertical"></li>
-        <li><a ui-sref='auth.login'>Log In</a>
+        <li><i class="fa fa-sign-out"></i> <a ui-sref='auth.login'>Log In</a>
         </li>
       </ul>
       <ul class="nav navbar-nav nav-social" data-ng-show="global.authenticated">
@@ -46,8 +46,8 @@
             {{global.user.name}} <b class="caret"></b>
           </a>
           <ul class="dropdown-menu">
-            <li><a ui-sref="goals">goals</a></li>
-            <li><a href="/logout">Log Out</a></li>
+            <li><a ui-sref="goals"><i class="fa fa-trophy"></i> Goals</a></li>
+            <li><a href="/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
           </ul>
         </li>
       </ul>
