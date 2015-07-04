@@ -38,3 +38,10 @@ video{
     from { transform: scale(1) rotate(0deg);}
     to { transform: scale(1) rotate(360deg);}
 }
+
+/* Mobile Styles */
+@media screen and (max-width: 767px){
+  .goals-public-view.max-page article{
+    padding: 0px !important;
+  }
+}

@@ -5,7 +5,7 @@
     <p class="brand-text" title="{{author}}">{{quote}}.</p>
   </div><!-- end navbar-header -->
 
-  <div class="navbar-collapse collapse in" id="rebound-navbar-collapse" style="height: auto;" >
+  <div class="navbar-collapse collapse" id="rebound-navbar-collapse" style="height: auto;" >
     <ul class="nav nav-pills nav-stacked" style="">
       <li class="{{page.active}}" ng-repeat="page in pages">
         <a ui-sref='{{page.location}}' ng-click="updateTab(page.id)">
@@ -33,14 +33,14 @@
         <div class="pull-right" data-ng-show="global.authenticated"></div>
         <div class="pull-right" data-ng-show="global.authenticated"></div>
       </div>
-      <ul class="navbar-nav nav" data-ng-hide="global.authenticated">
+      <ul class="nav navbar-nav nav-social" data-ng-hide="global.authenticated">
         <li><a ui-sref='auth.register'>Join</a>
         </li>
         <li class="divider-vertical"></li>
         <li><a ui-sref='auth.login'>Log In</a>
         </li>
       </ul>
-      <ul class="navbar-nav nav" data-ng-show="global.authenticated">
+      <ul class="nav navbar-nav nav-social" data-ng-show="global.authenticated">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             {{global.user.name}} <b class="caret"></b>
@@ -54,5 +54,3 @@
       <p class="pull-left hidden-sm hidden-xs">Hand crafted by <a href="http://saltyslopes.com">SaltySlopes</a> &copy; Copyright {{date | date:'yyyy'}}.</p>
   </div><!-- end navbar-collapse -->
 </div>
-
-
