@@ -1,35 +1,48 @@
 <div class="row">
-  <div class="col-md-11">
-    <div class="max-page" ui-view>
-      <ol class="breadcrumb" ng-controller="breadController" data-ng-init="indexInit()">
-        <li ng-repeat="item in breadCrumbs">
-          <a ui-sref='{{item.location}}'>{{item.name}}</a>
-        </li>
-      </ol>
-    
-      <div class="well">
-        <h2> <timer end-time="1451628000000">{{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer></h2>
-      </div>
-      
-      <article>
-        <div class="row padding-bottom-10">
-          <div class="col-md-6">
-            <p class="text-left">Create Goals<a ui-sref='goals.create'><button class="btn btn-lg btn-light pull-right"><i class="fa fa-only fa-plus"></i></button></a></p>
-          </div>
+    <div class="col-md-11">
+        <div class="max-page" ui-view>
+            <ol class="breadcrumb" ng-controller="breadController" data-ng-init="indexInit()">
+                <li ng-repeat="item in breadCrumbs">
+                    <a ui-sref='{{item.location}}'>{{item.name}}</a>
+                </li>
+            </ol>
+
+            <div class="well">
+                <h2> <timer end-time="1451628000000">{{days}} days, {{hours}} hours, {{minutes}} minutes, {{seconds}} seconds.</timer></h2>
+            </div>
+
+            <article>
+                <div class="row padding-bottom-10">
+                    <div class="col-md-6">
+                        <p class="text-left">Manage Goals
+                            <a ui-sref='goals.create'>
+                                <button class="btn btn-lg btn-light pull-right"><i class="fa fa-only fa-pencil"></i></button>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row padding-bottom-10">
+                    <div class="col-md-6">
+                        <p class="text-left">Complete Todays Goals
+                            <a ui-sref='goals.log'>
+                                <button class="btn btn-lg btn-light pull-right"><i class="fa fa-only fa-road"></i></button>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <hr>
+                <div class="row padding-bottom-10">
+                    <div class="col-md-6">
+                        <p class="text-left">New Year Page
+                            <a ui-sref='goals-page'>
+                                <button class="btn btn-lg btn-light pull-right"><i class="fa fa-only fa-calendar"></i></button>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </article>
+            <!-- end article -->
         </div>
-    
-        <div class="row padding-bottom-10">
-          <div class="col-md-6">
-            <p class="text-left">Complete Todays Goals <a ui-sref='goals.log'><button class="btn btn-lg btn-light pull-right"><i class="fa fa-only fa-road"></i></button></a></p>
-          </div>
-        </div>
-        <hr>
-        <div class="row padding-bottom-10">
-          <div class="col-md-6">
-            <p class="text-left">New Year Page <a ui-sref='goals-page'><button class="btn btn-lg btn-light pull-right"><i class="fa fa-only fa-calendar"></i></button></a></p>
-          </div>
-        </div>
-      </article><!-- end article -->
     </div>
-  </div>
 </div>
