@@ -1332,22 +1332,22 @@ dl:after {
   COMPONENTS
 ***************************************************/
 .page-header {
-  margin: -50px -50px 35px;
+  margin: 0px 0px 35px;
   padding: 0 0 35px;
   border-bottom: 1px solid #e6e6e6;
 }
 .page-header img {
   width: 100%;
   height: auto;
-  -webkit-border-radius: 4px 4px 0 0;
-  -moz-border-radius: 4px 4px 0 0;
-  border-radius: 4px 4px 0 0;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  border: 2px solid #F4F4F4; 
 }
 .page-header h1 {
-  margin: 30px 50px 10px;
+  margin: 30px 0px 5px;
 }
 .page-header .lead {
-  margin: 0 50px;
   color: #9a9a9a;
 }
 .popover {

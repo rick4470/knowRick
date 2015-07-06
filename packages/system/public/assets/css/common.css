@@ -2,8 +2,19 @@ video {
     width: 100%;
     height: auto;
 }
+/* Blog Posts Card Block */
 .card {
-    min-height: 481px;
+    min-height: 470px;
+    margin: 20px 20px 0;
+}
+.card-body{
+    min-height: 270px;
+}
+.card-footer{
+   min-height: 55px;
+}
+.card-body h3{
+    font-size: 1.5em;
 }
 .max-page article {
     margin: 0 0 30px;
