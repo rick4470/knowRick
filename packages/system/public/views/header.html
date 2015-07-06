@@ -1,56 +1,58 @@
 <div data-ng-controller="HeaderController">
-  <div class="navbar-header">
-    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#rebound-navbar-collapse"><span class="fa fa-bars"></span>Menu</button>
-    <a ui-sref='root' class="navbar-brand" ng-click="updateTab(0)">KnowRick</a>
-    <p class="brand-text" title="{{author}}">{{quote}}.</p>
-  </div><!-- end navbar-header -->
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#rebound-navbar-collapse"><span class="fa fa-bars"></span>Menu</button>
+        <a ui-sref='root' class="navbar-brand" ng-click="updateTab(0)">KnowRick</a>
+        <p class="brand-text" title="{{author}}">{{quote}}.</p>
+    </div>
+    <!-- end navbar-header -->
 
-  <div class="navbar-collapse collapse" id="rebound-navbar-collapse" style="height: auto;" >
-    <ul class="nav nav-pills nav-stacked" style="">
-      <li class="{{page.active}}" ng-repeat="page in pages">
-        <a ui-sref='{{page.location}}' ng-click="updateTab(page.id)">
-          <i class="fa {{page.icon}} fa-fw"></i> {{page.name}}
-        </a>
-      </li>
-    </ul>
+    <div class="navbar-collapse collapse" id="rebound-navbar-collapse" style="height: auto;">
+        <ul class="nav nav-pills nav-stacked" style="">
+            <li class="{{page.active}}" ng-repeat="page in pages">
+                <a ui-sref='{{page.location}}' ng-click="updateTab(page.id)">
+                    <i class="fa {{page.icon}} fa-fw"></i> {{page.name}}
+                </a>
+            </li>
+        </ul>
 
-    <ul class="nav navbar-nav hidden-sm hidden-xs" ng-init="pagesInit()">
-      <li class="title">Past Years</li>
-      <li ng-repeat="goal in goals">
-        {{goal.year}}
-      </li>
-    </ul>
-    <ul class="nav navbar-nav nav-social">
-      <li class="title">Social</li>
-      <li><a target="_blank" href="https://twitter.com/rick4470"><i class="fa fa-twitter"></i> Twitter</a></li>
-      <li><a target="_blank" href="https://plus.google.com/u/0/+RickHCWI/"><i class="fa fa-google-plus"></i> Google+</a></li>
-      <li><a target="_blank" href="https://www.linkedin.com/pub/ricardo-hernandez/3b/651/5a7"><i class="fa fa-linkedin"></i> LinkedIn</a></li>
-      <li><a target="_blank" href="http://codewithintent.com/"><i class="fa fa-code"></i> Software Blog</a></li>
-      <li><a target="_blank" href="http://saltyslopes.com/"><i class="fa fa-outdent"></i> Portfolio</a></li>
+        <ul class="nav navbar-nav hidden-sm hidden-xs" ng-init="pagesInit()">
+            <li class="title">Past Years</li>
+            <li ng-repeat="goal in goals">
+                {{goal.year}}
+            </li>
+        </ul>
+        <ul class="nav navbar-nav nav-social">
+            <li class="title">Social</li>
+            <li><a target="_blank" href="https://twitter.com/rick4470"><i class="fa fa-twitter"></i> Twitter</a></li>
+            <li><a target="_blank" href="https://plus.google.com/u/0/+RickHCWI/"><i class="fa fa-google-plus"></i> Google+</a></li>
+            <li><a target="_blank" href="https://www.linkedin.com/pub/ricardo-hernandez/3b/651/5a7"><i class="fa fa-linkedin"></i> LinkedIn</a></li>
+            <li><a target="_blank" href="http://codewithintent.com/"><i class="fa fa-code"></i> Software Blog</a></li>
+            <li><a target="_blank" href="http://saltyslopes.com/"><i class="fa fa-outdent"></i> Portfolio</a></li>
 
-    </ul>
-      <div>
-        <div class="pull-right" data-ng-show="global.authenticated"></div>
-        <div class="pull-right" data-ng-show="global.authenticated"></div>
-      </div>
-      <ul class="nav navbar-nav nav-social" data-ng-hide="global.authenticated">
-        <li><a ui-sref='auth.register'>Join</a>
-        </li>
-        <li class="divider-vertical"></li>
-        <li><i class="fa fa-sign-out"></i> <a ui-sref='auth.login'>Log In</a>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav nav-social" data-ng-show="global.authenticated">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        </ul>
+        <div>
+            <div class="pull-right" data-ng-show="global.authenticated"></div>
+            <div class="pull-right" data-ng-show="global.authenticated"></div>
+        </div>
+        <ul class="nav navbar-nav nav-social" data-ng-hide="global.authenticated">
+            <li><a ui-sref='auth.register'><i class="fa fa-wrench"></i>Join</a>
+            </li>
+            <li class="divider-vertical"></li>
+            <li><i class="fa fa-sign-out"></i> <a ui-sref='auth.login'>Log In</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav nav-social" data-ng-show="global.authenticated">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             {{global.user.name}} <b class="caret"></b>
           </a>
-          <ul class="dropdown-menu">
-            <li><a ui-sref="goals"><i class="fa fa-trophy"></i> Goals</a></li>
-            <li><a href="/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
-          </ul>
-        </li>
-      </ul>
-      <p class="pull-left hidden-sm hidden-xs">Hand crafted by <a href="http://saltyslopes.com">SaltySlopes</a> &copy; Copyright {{date | date:'yyyy'}}.</p>
-  </div><!-- end navbar-collapse -->
+                <ul class="dropdown-menu">
+                    <li><a ui-sref="goals"><i class="fa fa-trophy"></i> Goals</a></li>
+                    <li><a href="/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+        <p class="pull-left hidden-sm hidden-xs">Hand crafted by <a href="http://saltyslopes.com">SaltySlopes</a> &copy; Copyright {{date | date:'yyyy'}}.</p>
+    </div>
+    <!-- end navbar-collapse -->
 </div>
