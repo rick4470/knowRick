@@ -19,9 +19,9 @@ Goals.register(function (app, auth, database) {
 
     // Make sure that angular package knows about any injections.
     Goals.angularDependencies([
-    'vr.directives.slider',
-    'timer'
-  ]);
+        'vr.directives.slider',
+        'timer'
+    ]);
 
     return Goals;
 });

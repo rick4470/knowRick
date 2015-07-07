@@ -16,7 +16,7 @@
         </ul>
 
         <ul class="nav navbar-nav hidden-sm hidden-xs" ng-init="pagesInit()">
-            <li class="title">Past Years</li>
+            <li class="title">Current Year</li>
             <li ng-repeat="goal in goals">
                 {{goal.year}}
             </li>
@@ -35,7 +35,7 @@
             <div class="pull-right" data-ng-show="global.authenticated"></div>
         </div>
         <ul class="nav navbar-nav nav-social" data-ng-hide="global.authenticated">
-            <li><a ui-sref='auth.register'><i class="fa fa-wrench"></i>Join</a>
+            <li><a ui-sref='auth.register'><i class="fa fa-wrench"></i> Join</a>
             </li>
             <li class="divider-vertical"></li>
             <li><i class="fa fa-sign-out"></i> <a ui-sref='auth.login'>Log In</a>

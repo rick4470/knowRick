@@ -2,18 +2,17 @@ video {
     width: 100%;
     height: auto;
 }
+
 /* Blog Posts Card Block */
+
 .card {
-    min-height: 470px;
+    min-height: 420px;
     margin: 20px 20px 0;
 }
-.card-body{
+.card-body {
     min-height: 270px;
 }
-.card-footer{
-   min-height: 55px;
-}
-.card-body h3{
+.card-body h3 {
     font-size: 1.5em;
 }
 .max-page article {
