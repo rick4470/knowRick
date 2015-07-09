@@ -1,0 +1,280 @@
+<style>
+    /*Activity Feed CSS*/
+    
+    .feed article.status-update {
+        margin-bottom: 15px;
+        padding-bottom: 0px;
+    }
+    
+    .feed-img {
+        border: 1px solid rgba(0, 0, 0, .1);
+        width: 50px;
+        height: 50px;
+        float: left;
+        margin: 12px 0px 0 0px;
+    }
+    
+    .feed-text-area {
+        height: 63px;
+        width: 90%;
+        border: none;
+        border-color: Transparent;
+        overflow: auto;
+        padding-top: 20px;
+        resize: none;
+    }
+    
+    .feed-text-area:focus {
+        outline: 0;
+        border-color: Transparent;
+        box-shadow: none;
+    }
+    
+    .feed-hr {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    
+    .feed-footer {
+        padding-top: 15px;
+        padding-bottom: 10px;
+    }
+    
+    .feed-footer .col-md-1 {
+        width: 40px;
+        padding: 0px;
+    }
+    
+    .feed-footer .col-md-4 {
+        padding: 0px;
+    }
+    
+    .feed-footer i:hover {
+        background: #f2f2f2;
+    }
+    
+    .feed-footer i {
+        font-size: 1.6em;
+        padding: 10px;
+        width: 40px;
+        height: 40px;
+        text-align: center;
+    }
+    
+    .feed .asset-wrapper {
+        height: 250px;
+        width: 250px;
+        border: 2px solid #F4F4F4;
+        margin-top: 15px;
+        border-radius: 5px;
+    }
+    
+    .feed .asset-wrapper iframe,
+    .feed .asset-wrapper img {
+        width: 100%;
+    }
+    
+    .feed small {
+        font-size: 1em;
+        color: #999;
+        line-height: 1.42857143;
+        font-style: italic;
+    }
+    
+    .feed .dropdown-menu {
+        background-color: #fff;
+    }
+    
+    .feed .dropdown-menu li:hover {
+        background-image: linear-gradient(to bottom, #f5f5f5 0%, #e8e8e8 100%);
+        background-color: #e8e8e8;
+        cursor: pointer;
+    }
+    
+    .feed .dropdown-menu li a:focus {
+        outline: 0;
+        border-color: Transparent;
+        box-shadow: none;
+    }
+    
+    .feed .asset-wrapper blockquote {
+        height: 250px;
+        width: 250px;
+        border: none;
+        border-radius: 5px;
+    }
+    
+    .feed blockquote {
+        font-size: 15px;
+        padding: 10px;
+        margin: 0 0 29px;
+    }
+    
+    .feed .well {
+        margin-bottom: 0px;
+        background-image: none;
+        margin-top: 30px;
+    }
+    
+    .feed .post .well h1 {
+        margin: 0px;
+    }
+    
+    .feed .post .fa {
+        font-size: 20px;
+        padding: 0px 10px;
+    }
+    
+    .feed .template2 img {
+        width: 100%;
+    }
+    
+    .feed .upload {
+        background: rgba(205, 104, 74, 1);
+        top: 0;
+        left: 0;
+        position: absolute;
+        height: 100%;
+        z-index: 300;
+        width: 100%;
+        color: #fff;
+    }
+    
+    .feed .upload p {
+        text-align: center;
+        margin-top: 80px;
+    }
+
+</style>
+<div ui-view>
+    <div class="max-page feed" data-ng-controller="FeedController">
+        <article class="aspect-ratio aspect-ratio-16-9" class="status-update" ng-show="loggedIn">
+
+            <div ng-show="upload" class="upload">
+                <p ng-show="sending"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Sending...</p>
+
+                <p ng-show="sent"><span class="glyphicon glyphicon-ok"></span> Sent</p>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="/system/assets/img/rick.jpg" class="feed-img">
+
+                            <textarea placeholder="What goal did you complete?" class="feed-text-area" ng-model="status"></textarea>
+                            <input type="text" placeholder="Enter the name of the location" class="feed-text-area" ng-model="locationName" ng-show="showLocationInput" ng-blur="onBlur('location')">
+                            <input type="text" placeholder="Enter a URL for a YouTube video" class="feed-text-area" ng-model="youTubeURL" ng-show="showYoutubeInput" ng-blur="onBlur('youtube')">
+
+                            <input type="text" ng-model="selected" typeahead="goal.name for goal in goals | filter:$viewValue | limitTo:8" class="feed-text-area" ng-blur="onBlur('goals')" placeholder="Search for a goal by typing" typeahead-on-select="selectedGoal($item)" ng-show="showGoalsInput">
+                            <hr class="feed-hr">
+                        </div>
+                    </div>
+                    <!-- New Post -->
+                    <div class="row post">
+                        <div class="col-md-4" ng-show="showImage">
+                            <div class="asset-wrapper">
+                                <img data-ng-src="{{imageLocation}}" alt="">
+                            </div>
+                        </div>
+                        <div class="col-md-4" ng-show="showVideo">
+                            <div class="asset-wrapper">
+                                <iframe id="player" type="text/html" width="100%;" height="250px;" ng-src="{{validYouTubeURL | trusted}}" frameborder="0"></iframe>
+                            </div>
+                        </div>
+                        <div class="col-md-4" ng-show="showGoal">
+                            <div class="asset-wrapper">
+                                <blockquote class="large center">
+                                    <span>I am easily going to <b>{{goal.name}}</b> no later then {{goal.date | date:'longDate' }}.</span>
+                                    <small>Rick H</small>
+                                    <p>{{goal.description}}</p>
+                                </blockquote>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- END New Post -->
+                    <div class="row feed-footer">
+                        <div class="col-md-1" ng-click="showInput('goals')"> <a href="javascript:void(0);"><i class="fa fa-trophy "></i></a>
+                        </div>
+                        <div class="col-md-1" ng-click="fileUpload()">
+                            <mean-upload file-dest="'/'" upload-callback="uploadComplete(files)">
+                            </mean-upload>
+                        </div>
+                        <div class="col-md-1" ng-click="showInput('youtube')">
+                            <a href="javascript:void(0);"><i class="fa fa-youtube "></i></a>
+                        </div>
+                        <div class="col-md-4" ng-click="showInput('location')">
+                            <a href="javascript:void(0);"><i class="fa fa-map-marker"></i></a><small ng-show="locationComplete" style="margin-left: -5px;"> {{locationName}}</small>
+                        </div>
+                        <div class="col-md-2 pull-right" ng-click="post()">
+                            <button class="btn btn-primary pull-right" ng-disabled="sending">Post</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </article>
+        <!-- END of Article -->
+        <article ng-repeat="post in globalFeed | orderBy:'-created'" class="post">
+
+            <div ng-show="post.template1" style="display: inline;">
+                <p class="pull-right">
+                    <small>{{global.user.name}} 
+                        <span>&rlm;</span> {{post.created | date:'MMM d, yyyy @ h:mma'}}
+                    </small>
+                    <a href="/" title="{{post.goal}}"> <i class="fa fa-trophy "></i></a>
+                    <a href="javascipt:void(0);" ng-click="remove(post)"><i class="fa fa-times"></i></a>
+                </p>
+                <div class="row" ng-show="post.youtube">
+                    <div class="col-md-12">
+                        <iframe id="player" type="text/html" width="100%;" height="400px;" ng-src="{{post.youtube | trusted}}" frameborder="0"></iframe>
+                    </div>
+                </div>
+                <div class="well">
+                    <h2>{{post.status}}</h2>
+                </div>
+                <div class="row" style="padding-top: 10px;">
+                    <div class="col-md-12">
+                        <p><small class="pull-right">{{post.location}}</small></p>
+                    </div>
+                </div>
+            </div>
+
+            <div ng-show="post.template2" class="template2" style="display: inline;">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p class="pull-right">
+                            <small>{{global.user.name}} 
+                        <span>&rlm;</span> {{post.created | date:'MMM d, yyyy @ h:mma'}}
+                    </small>
+                            <a href="/" title="{{post.goal}}"> <i class="fa fa-trophy "></i></a>
+                            <a href="javascipt:void(0);" ng-click="remove(post)"><i class="fa fa-times"></i></a>
+                        </p>
+                    </div>
+                </div>
+                <div class="row" ng-show="post.youtube">
+                    <div class="col-md-12">
+                        <iframe id="player" type="text/html" width="100%;" height="400px;" ng-src="{{post.youtube | trusted}}" frameborder="0"></iframe>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="well">
+                            <h2>{{post.status}}</h2>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img data-ng-src="{{post.image}}" alt="">
+                    </div>
+
+                </div>
+                <div class="row" style="padding-top: 10px;">
+                    <div class="col-md-12">
+                        <p><small class="pull-right">{{post.location}}</small></p>
+                    </div>
+                </div>
+            </div>
+
+        </article>
+    </div>
+</div>

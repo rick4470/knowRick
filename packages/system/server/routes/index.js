@@ -2,6 +2,7 @@
 
 var mean = require('meanio');
 var blog = require('../controllers/blog');
+var feed = require('../controllers/feed');
 
 module.exports = function (System, app, auth, database) {
     // Home route
@@ -25,5 +26,5 @@ module.exports = function (System, app, auth, database) {
     app.route('/feed/:feedId').put(auth.requiresLogin, feed.update);
 
     // Finish with setting up the goalId param
-    app.param('feedId', feed.status)
+    app.param('feedId', feed.feed);
 };
