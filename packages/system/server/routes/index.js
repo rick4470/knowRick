@@ -13,7 +13,7 @@ module.exports = function (System, app, auth, database) {
 
     app.get('/*', function (req, res, next) {
         res.header('workerID', JSON.stringify(mean.options.workerid));
-        next(); // http://expressjs.com/guide.html#passing-route control
+        next();
     });
     app.route('/posts').get(blog.all);
     app.route('/posts').get(blog.loginToBlog);
@@ -27,4 +27,5 @@ module.exports = function (System, app, auth, database) {
 
     // Finish with setting up the goalId param
     app.param('feedId', feed.feed);
+
 };

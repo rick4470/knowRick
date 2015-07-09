@@ -6,18 +6,10 @@
     <meta name="author" content="Rick H">
 
     <!-- Le styles -->
-    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-
-    {% for file in aggregatedassets.header.css %}
-      <link rel="stylesheet" href="{{file}}">
-    {% endfor %}
-
-    {% for file in aggregatedassets.footer.css %}
-      <link rel="stylesheet" href="{{file}}">
-    {% endfor %}
-
-    {% for file in aggregatedassets.header.js %}
-      <script type="text/javascript" src="{{file}}"></script>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"> {% for file in aggregatedassets.header.css %}
+    <link rel="stylesheet" href="{{file}}"> {% endfor %} {% for file in aggregatedassets.footer.css %}
+    <link rel="stylesheet" href="{{file}}"> {% endfor %} {% for file in aggregatedassets.header.js %}
+    <script type="text/javascript" src="{{file}}"></script>
     {% endfor %}
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <!--[if IE 7]>
