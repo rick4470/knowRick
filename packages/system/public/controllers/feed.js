@@ -4,10 +4,10 @@ angular.module('mean.system').controller(
     'FeedController', ['$scope', 'Goals', 'Feed', 'Global', function ($scope, Goals, Feed, Global) {
         $scope.global = Global;
         $scope.globalFeed = [];
+        $scope.loggedIn = false;
 
         // Make sure that a users is logged in
         if ($scope.global.user.name === undefined) {
-            $scope.loggedIn = false;
             $scope.global.user.name = 'Rick H';
         } else {
             $scope.loggedIn = true;
