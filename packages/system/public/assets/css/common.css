@@ -10,7 +10,7 @@ video {
     margin: 20px 20px 0;
 }
 .card-body {
-    min-height: 270px;
+max-height: 270px;
 }
 .card-body h3 {
     font-size: 1.5em;
@@ -89,4 +89,13 @@ ul.dropdown-menu {
     .goals-public-view.max-page article {
         padding: 10px 30px;
     }
+}
+
+/*Wrap code*/
+code{
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;   
 }
