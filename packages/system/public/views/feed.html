@@ -219,11 +219,11 @@
 
             <div ng-show="post.template1" style="display: inline;">
                 <p class="pull-right">
-                    <small>{{global.user.name}} 
+                    <small>{{userName}} 
                         <span>&rlm;</span> {{post.created | date:'MMM d, yyyy @ h:mma'}}
                     </small>
                     <a href="/" title="{{post.goal}}"> <i class="fa fa-trophy "></i></a>
-                    <a href="javascipt:void(0);" ng-click="remove(post)"><i class="fa fa-times"></i></a>
+                    <a href="javascipt:void(0);" ng-click="remove(post)" ng-show="loggedIn"><i class="fa fa-times"></i></a>
                 </p>
                 <div class="row" ng-show="post.youtube">
                     <div class="col-md-12">
@@ -248,7 +248,7 @@
                         <span>&rlm;</span> {{post.created | date:'MMM d, yyyy @ h:mma'}}
                     </small>
                             <a href="/" title="{{post.goal}}"> <i class="fa fa-trophy "></i></a>
-                            <a href="javascipt:void(0);" ng-click="remove(post)"><i class="fa fa-times"></i></a>
+                            <a href="javascipt:void(0);" ng-click="remove(post)" ng-show="loggedIn"><i class="fa fa-times"></i></a>
                         </p>
                     </div>
                 </div>

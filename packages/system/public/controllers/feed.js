@@ -8,7 +8,7 @@ angular.module('mean.system').controller(
 
         // Make sure that a users is logged in
         if ($scope.global.user.name === undefined) {
-            $scope.global.user.name = 'Rick H';
+            $scope.userName = 'Rick H';
         } else {
             $scope.loggedIn = true;
         }
