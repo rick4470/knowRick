@@ -126,7 +126,8 @@ angular.module('mean.system').controller(
                     $scope.validYouTubeURL = undefined;
                     $scope.locationName = undefined;
                     $scope.youTubeURL = undefined;
-                    $scope.imageLocation = undefined;
+                    $scope.showImage = false;
+
                     hideAllInputs();
 
                     var newPost = {
