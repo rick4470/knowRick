@@ -5,7 +5,6 @@
         <p class="brand-text" title="{{author}}">{{quote}}.</p>
     </div>
     <!-- end navbar-header -->
-
     <div class="navbar-collapse collapse" id="rebound-navbar-collapse" style="height: auto;">
         <ul class="nav nav-pills nav-stacked" style="">
             <li class="{{page.active}}" ng-repeat="page in pages">
@@ -53,6 +52,7 @@
             </li>
         </ul>
         <p class="pull-left hidden-sm hidden-xs">Hand crafted by <a href="http://saltyslopes.com">SaltySlopes</a> &copy; Copyright {{date | date:'yyyy'}}.</p>
+        <img ng-src="{{trustSrc(trackingPixel)}}" style="display: none;" />
     </div>
     <!-- end navbar-collapse -->
 </div>

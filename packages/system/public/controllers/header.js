@@ -1,7 +1,9 @@
+/* global $ */
 'use strict';
 
-angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Global', '$http', '$location',
-  function ($scope, $rootScope, Global, $http, $location) {
+
+angular.module('mean.system').controller('HeaderController', ['$scope', '$rootScope', 'Global', '$http', '$location', '$sce',
+  function ($scope, $rootScope, Global, $http, $location, $sce) {
         $scope.global = Global;
 
         $scope.setSideBar = function () {
@@ -246,6 +248,19 @@ angular.module('mean.system').controller('HeaderController', ['$scope', '$rootSc
         $scope.quote = goals[randomNumber].quote;
 
         $scope.date = new Date();
+
+        $scope.trustSrc = function (src) {
+            return $sce.trustAsResourceUrl(src);
+        };
+
+        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+            var d = {
+                'url': $location.path(),
+                'title': toState.url,
+                'email': $scope.global.user.username + '@gamil.com'
+            };
+            $scope.trackingPixel = 'http://social.codewithintent.com/mtracking.gif?d=' + encodeURIComponent(btoa($.param(d)));
+        });
 
   }
 ]);
