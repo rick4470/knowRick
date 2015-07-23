@@ -62,11 +62,12 @@
     }
     
     .feed .asset-wrapper {
-        height: 250px;
+        height: auto;
         width: 250px;
         border: 2px solid #F4F4F4;
         margin-top: 15px;
         border-radius: 5px;
+        margin-bottom: 15px;
     }
     
     .feed .asset-wrapper iframe,
@@ -127,6 +128,7 @@
     
     .feed .template2 img {
         width: 100%;
+        padding: 10px;
     }
     
     .feed .upload {
@@ -143,6 +145,14 @@
     .feed .upload p {
         text-align: center;
         margin-top: 80px;
+    }
+    
+    .image-upload {
+        font-size: 15px;
+        color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 42%;
     }
 
 </style>
@@ -172,11 +182,20 @@
                     </div>
                     <!-- New Post -->
                     <div class="row post">
-                        <div class="col-md-4" ng-show="showImage">
+                        <div class="col-md-4" ng-show="loadingComplete">
                             <div class="asset-wrapper">
                                 <img data-ng-src="{{imageLocation}}" alt="">
                             </div>
                         </div>
+
+                        <div class="col-md-4" ng-show="openImageLoading">
+                            <div class="asset-wrapper" style="background-color: #DCDEE3;height:250px; ">
+                                <div class="image-upload">
+                                    <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> {{percent}}%
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="col-md-4" ng-show="showVideo">
                             <div class="asset-wrapper">
                                 <iframe id="player" type="text/html" width="100%;" height="250px;" ng-src="{{validYouTubeURL | trusted}}" frameborder="0"></iframe>
@@ -198,79 +217,79 @@
                         <div class="col-md-1" ng-click="showInput('goals')"> <a href="javascript:void(0);"><i class="fa fa-trophy "></i></a>
                         </div>
                         <div class="col-md-1" ng-click="fileUpload()">
-                            <mean-upload file-dest="'/'" upload-callback="uploadComplete(files)">
+                            <mean-upload file-dest="'/'" upload-callback="uploadComplete(files)" upload-progress-callback="progress(status)">
                             </mean-upload>
                         </div>
-                        <div class="col-md-1" ng-click="showInput('youtube')">
-                            <a href="javascript:void(0);"><i class="fa fa-youtube "></i></a>
+                        <div class="col-md-1 " ng-click="showInput( 'youtube') ">
+                            <a href="javascript:void(0); "><i class="fa fa-youtube "></i></a>
                         </div>
-                        <div class="col-md-4" ng-click="showInput('location')">
-                            <a href="javascript:void(0);"><i class="fa fa-map-marker"></i></a><small ng-show="locationComplete" style="margin-left: -5px;"> {{locationName}}</small>
+                        <div class="col-md-4 " ng-click="showInput( 'location') ">
+                            <a href="javascript:void(0); "><i class="fa fa-map-marker "></i></a><small ng-show="locationComplete " style="margin-left: -5px; "> {{locationName}}</small>
                         </div>
-                        <div class="col-md-2 pull-right" ng-click="post()">
-                            <button class="btn btn-primary pull-right" ng-disabled="sending">Post</button>
+                        <div class="col-md-2 pull-right " ng-click="post() ">
+                            <button class="btn btn-primary pull-right " ng-disabled="sending ">Post</button>
                         </div>
                     </div>
                 </div>
             </div>
         </article>
         <!-- END of Article -->
-        <article ng-repeat="post in globalFeed | orderBy:'-created'" class="post">
+        <article ng-repeat="post in globalFeed | orderBy: '-created' " class="post ">
 
-            <div ng-show="post.template1" style="display: inline;">
-                <p class="pull-right">
+            <div ng-show="post.template1 " style="display: inline; ">
+                <p class="pull-right ">
                     <small>{{userName}} 
                         <span>&rlm;</span> {{post.created | date:'MMM d, yyyy @ h:mma'}}
                     </small>
-                    <a href="/" title="{{post.goal}}"> <i class="fa fa-trophy "></i></a>
-                    <a href="javascipt:void(0);" ng-click="remove(post)" ng-show="loggedIn"><i class="fa fa-times"></i></a>
+                    <a href="/ " title="{{post.goal}} "> <i class="fa fa-trophy "></i></a>
+                    <a href="javascipt:void(0); " ng-click="remove(post) " ng-show="loggedIn "><i class="fa fa-times "></i></a>
                 </p>
-                <div class="row" ng-show="post.youtube">
-                    <div class="col-md-12">
-                        <iframe id="player" type="text/html" width="100%;" height="400px;" ng-src="{{post.youtube | trusted}}" frameborder="0"></iframe>
+                <div class="row " ng-show="post.youtube ">
+                    <div class="col-md-12 ">
+                        <iframe id="player " type="text/html " width="100%; " height="400px; " ng-src="{{post.youtube | trusted}} " frameborder="0 "></iframe>
                     </div>
                 </div>
-                <div class="well">
+                <div class="well ">
                     <h2>{{post.status}}</h2>
                 </div>
-                <div class="row" style="padding-top: 10px;">
-                    <div class="col-md-12">
-                        <p><small class="pull-right">{{post.location}}</small></p>
+                <div class="row " style="padding-top: 10px; ">
+                    <div class="col-md-12 ">
+                        <p><small class="pull-right ">{{post.location}}</small></p>
                     </div>
                 </div>
             </div>
 
-            <div ng-show="post.template2" class="template2" style="display: inline;">
-                <div class="row">
-                    <div class="col-md-12">
-                        <p class="pull-right">
+            <div ng-show="post.template2 " class="template2 " style="display: inline; ">
+                <div class="row ">
+                    <div class="col-md-12 ">
+                        <p class="pull-right ">
                             <small>{{global.user.name}} 
                         <span>&rlm;</span> {{post.created | date:'MMM d, yyyy @ h:mma'}}
                     </small>
-                            <a href="/" title="{{post.goal}}"> <i class="fa fa-trophy "></i></a>
-                            <a href="javascipt:void(0);" ng-click="remove(post)" ng-show="loggedIn"><i class="fa fa-times"></i></a>
+                            <a href="/ " title="{{post.goal}} "> <i class="fa fa-trophy "></i></a>
+                            <a href="javascipt:void(0); " ng-click="remove(post) " ng-show="loggedIn "><i class="fa fa-times "></i></a>
                         </p>
                     </div>
                 </div>
-                <div class="row" ng-show="post.youtube">
-                    <div class="col-md-12">
-                        <iframe id="player" type="text/html" width="100%;" height="400px;" ng-src="{{post.youtube | trusted}}" frameborder="0"></iframe>
+                <div class="row " ng-show="post.youtube ">
+                    <div class="col-md-12 ">
+                        <iframe id="player " type="text/html " width="100%; " height="400px; " ng-src="{{post.youtube | trusted}} " frameborder="0 "></iframe>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="well">
+                <div class="row ">
+                    <div class="col-md-6 ">
+                        <div class="well ">
                             <h2>{{post.status}}</h2>
                         </div>
                     </div>
-                    <div class="col-md-6">
-                        <img data-ng-src="{{post.image}}" alt="">
+                    <div class="col-md-6 ">
+                        <img data-ng-src="{{post.image}} " alt=" ">
                     </div>
 
                 </div>
-                <div class="row" style="padding-top: 10px;">
-                    <div class="col-md-12">
-                        <p><small class="pull-right">{{post.location}}</small></p>
+                <div class="row " style="padding-top: 10px; ">
+                    <div class="col-md-12 ">
+                        <p><small class="pull-right ">{{post.location}}</small></p>
                     </div>
                 </div>
             </div>

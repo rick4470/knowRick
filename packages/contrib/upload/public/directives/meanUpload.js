@@ -6,7 +6,8 @@ angular.module('mean.upload').directive('meanUpload', function ($upload) {
         scope: {
             fileDest: '=',
             uploadCallback: '&',
-            uploadFileCallback: '&'
+            uploadFileCallback: '&',
+            uploadProgressCallback: '&'
         },
         restrict: 'E',
         replace: false,
@@ -29,6 +30,14 @@ angular.module('mean.upload').directive('meanUpload', function ($upload) {
                     }).progress(function (evt) {
                         // Not needed to log results
                         //console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total)); 
+                        //console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+
+                        if (angular.isDefined(attrs.uploadProgressCallback)) {
+                            $scope.uploadProgressCallback({
+                                status: evt
+                            });
+                        }
+
                     }).success(function (data, status, headers, config) {
                         if (data.success) {
                             if (angular.isDefined(attrs.uploadFileCallback)) {

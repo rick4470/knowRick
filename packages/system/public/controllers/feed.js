@@ -21,10 +21,9 @@ angular.module('mean.system').controller(
             });
         });
 
-        $scope.showImage = false;
+        $scope.loadingComplete = false;
         $scope.uploadComplete = function (files) {
             $scope.imageLocation = files[0].src;
-            $scope.showImage = true;
         };
 
         $scope.fileUpload = function () {
@@ -49,6 +48,28 @@ angular.module('mean.system').controller(
                     break;
                 default:
                     break;
+            }
+        };
+        $scope.openImageLoading = false;
+        $scope.percent = 0;
+        $scope.progress = function (files) {
+
+            if (!$scope.openImageLoading) {
+                $scope.openImageLoading = true;
+            }
+            var count = parseInt(100 * (files.loaded / files.total));
+            if ($scope.percent === 100) {
+                window.setTimeout(function () {
+                    $scope.$apply(function () {
+                        $scope.percent = 0;
+                        $scope.loadingComplete = true;
+                        $scope.openImageLoading = false;
+                    });
+                }, 200);
+            } else {
+                for (var i = (count - $scope.percent); i > 0; i -= 1) {
+                    $scope.percent += 1;
+                }
             }
         };
 
@@ -122,11 +143,9 @@ angular.module('mean.system').controller(
 
                     $scope.status = undefined;
                     $scope.goalID = undefined;
-                    $scope.imageLocation = undefined;
                     $scope.validYouTubeURL = undefined;
                     $scope.locationName = undefined;
                     $scope.youTubeURL = undefined;
-                    $scope.showImage = false;
 
                     hideAllInputs();
 
@@ -268,6 +287,7 @@ angular.module('mean.system').controller(
             $scope.showLocationInput = false;
             $scope.showYoutubeInput = false;
             $scope.showGoalsInput = false;
+            $scope.loadingComplete = false;
         }
 
             }]).filter('trusted', ['$sce', function ($sce) {
