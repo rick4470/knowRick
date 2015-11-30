@@ -5,7 +5,6 @@
  */
 var mongoose = require('mongoose'),
   Goal = mongoose.model('Goal'),
-  //SubGoal = mongoose.model('SubGoal'),
    _ = require('lodash');
 
 /**
