@@ -2213,6 +2213,7 @@ label.checkbox.inline {
 ****************************************************/
 
 .post-content img {
+    max-width:100%:
     height: auto;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
