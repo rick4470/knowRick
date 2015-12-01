@@ -2,16 +2,19 @@
 <html>
 <head>
     <title>AngularJS Example - Single Timer Example</title>
-    <script src="../bower_components/angular/angular.min.js"></script>
-    <script src="../app/js/timer.js"></script>
+    <!-- compiled CSS -->
+    <link rel="stylesheet" type="text/css" href="../assets/css/angular-timer-bower.css" />
+
+    <!-- compiled JavaScript -->
+    <script type="text/javascript" src="../assets/js/angular-timer-bower.js"></script>
+    <script type="text/javascript" src="../assets/js/angular-timer-all.min.js"></script>
     <script>
-        angular.module('MyApp', ['timer']);
-        function MyAppController($scope) {
-            $scope.add5Seconds = function () {
-                $scope.$broadcast('timer-add-cd-seconds', 5);
-            }
-        }
-        MyAppController.$inject = ['$scope'];
+        angular.module('MyApp', ['timer'])
+                .controller('MyAppController', ['$scope', function ($scope) {
+                    $scope.add5Seconds = function () {
+                        $scope.$broadcast('timer-add-cd-seconds', 5);
+                    }
+                }]);
     </script>
 </head>
 <body ng-app="MyApp">

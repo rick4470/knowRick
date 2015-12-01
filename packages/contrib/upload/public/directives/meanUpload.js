@@ -1,18 +1,17 @@
 'use strict';
 
-angular.module('mean.upload').directive('meanUpload', function ($upload) {
+angular.module('mean.upload').directive('meanUpload', function($upload) {
     return {
         templateUrl: 'upload/views/directives/meanUpload.html',
         scope: {
             fileDest: '=',
             uploadCallback: '&',
-            uploadFileCallback: '&',
-            uploadProgressCallback: '&'
+            uploadFileCallback: '&'
         },
         restrict: 'E',
         replace: false,
-        link: function ($scope, element, attrs) {
-            $scope.onFileSelect = function ($files) {
+        link: function($scope, element, attrs) {
+            $scope.onFileSelect = function($files) {
                 var files = [];
                 $scope.files = $files;
                 //$files: an array of files selected, each file has name, size, and type.
@@ -27,18 +26,9 @@ angular.module('mean.upload').directive('meanUpload', function ($upload) {
                             dest: $scope.fileDest
                         },
                         file: file
-                    }).progress(function (evt) {
-                        // Not needed to log results
-                        //console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total)); 
-                        //console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
-
-                        if (angular.isDefined(attrs.uploadProgressCallback)) {
-                            $scope.uploadProgressCallback({
-                                status: evt
-                            });
-                        }
-
-                    }).success(function (data, status, headers, config) {
+                    }).progress(function(evt) {
+                        console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+                    }).success(function(data, status, headers, config) {
                         if (data.success) {
                             if (angular.isDefined(attrs.uploadFileCallback)) {
                                 $scope.uploadFileCallback({

@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "venturocket-angular-slider": "~0.3.2",
-    "angular-timer": "~1.2.1"
+    "angular-timer": "~1.3.3",
+    "angular-slider": "venturocket-angular-slider#~0.3.2"
   }
 }

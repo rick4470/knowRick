@@ -66,3 +66,5 @@ modules/views/
 config/env/all.js
 config/env/production.js
 files/
+
+packages/goals/public/assets/lib/

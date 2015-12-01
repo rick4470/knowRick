@@ -68,7 +68,8 @@
     "serve-favicon": "2.2.0",
     "swig": "1.4.2",
     "time-grunt": "^1.0.0",
-    "view-helpers": "0.1.5"
+    "view-helpers": "0.1.5",
+    "connect-multiparty": "~2.0.0"
   },
   "devDependencies": {
     "expect.js": "0.3.1",
